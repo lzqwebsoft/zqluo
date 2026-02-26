@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <title>在线播放测试</title>
+    <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.8.2/skins/default/aliplayer-min.css" />
+    <script type="text/javascript" charset="utf-8" src="https://g.alicdn.com/de/prismplayer/2.8.2/aliplayer-min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="https://player.alicdn.com/aliplayer/presentation/js/aliplayercomponents.min.js"></script>
+    <style type="text/css">
+        body {
+            background-color: #FFF;
+            margin: 0;
+        }
+        
+        .container,
+        footer {
+            width: 50%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        
+        @media(max-width: 1024px) {
+            .container,
+            footer {
+                width: 100%;
+                margin: 0 auto;
+                overflow: hidden;
+            }
+        }
+        
+        .container h1 {
+            font-size: 1.6em;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #EEE;
+            margin-bottom: 5px;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+        
+        .container h1 small {
+            font-size: 75%;
+        }
+        
+        .container h2 a {
+            text-decoration: none;
+            color: #000;
+        }
+        
+        .container #video-source {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 5px 0;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+        
+        .container #videoUrl {
+            flex-grow: 7;
+            padding: 12px;
+            border: 1px solid #EEE;
+            border-radius: 5px;
+            font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+            font-size: 16px;
+            color: #222;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        
+        .container #video-source .is-live-box {
+            margin-left: 10px;
+            margin-right: 10px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        
+        .container .mybutton {
+            background-color: #1B9AF7;
+            border-color: #1B9AF7;
+            color: #FFF;
+            font-weight: 300;
+            font-size: 16px;
+            font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+            text-decoration: none;
+            text-align: center;
+            padding: 10px;
+            display: inline-block;
+            appearance: none;
+            cursor: pointer;
+            border: none;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-transition-property: all;
+            transition-property: all;
+            -webkit-transition-duration: .3s;
+            transition-duration: .3s;
+            border-radius: 5px;
+        }
+        
+        .container .live-source-btn {
+            margin-top: 10px;
+        }
+        
+        .container #video-source button {
+            height: 44px;
+            flex-grow: 1;
+            margin: 0;
+        }
+        
+        ul.channel-list {
+            display: flex;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            flex-flow: row wrap;
+            justify-content: center;
+            align-content: center;
+        }
+        
+        ul.channel-list li {
+            margin: 5px;
+            width: 100px;
+        }
+        
+        ul.channel-list li.sources-group {
+            width: 100%;
+        }
+        
+        ul.channel-list li.sources-group a {
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #000;
+            padding-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .container .mybutton:focus,
+        .mybutton:hover {
+            background-color: #4cb0f9;
+            border-color: #4cb0f9;
+            color: #FFF;
+        }
+        
+        .container .mybutton:active {
+            background-color: #2798eb;
+            border-color: #2798eb;
+            color: #0880d7;
+        }
+        
+        #live-channel-slider {
+            position: fixed;
+            overflow-y: scroll;
+            right: 0;
+            top: 0;
+            width: 30%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, .75);
+            transform: translateX(100%);
+            -webkit-transform: translateX(100%);
+            z-index: 1001;
+            border-left: 1px solid #EEE;
+            box-shadow: -5px 0 11px 3px rgba(0, 0, 0, 0.15);
+        }
+        
+        .slide-in {
+            animation: slide-in 0.5s forwards;
+            -webkit-animation: slide-in 0.5s forwards;
+        }
+        
+        .slide-out {
+            animation: slide-out 0.5s forwards;
+            -webkit-animation: slide-out 0.5s forwards;
+        }
+        
+        @keyframes slide-in {
+            100% {
+                transform: translateX(0%);
+            }
+        }
+        
+        @-webkit-keyframes slide-in {
+            100% {
+                -webkit-transform: translateX(0%);
+            }
+        }
+        
+        @keyframes slide-out {
+            0% {
+                transform: translateX(0%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        
+        @-webkit-keyframes slide-out {
+            0% {
+                -webkit-transform: translateX(0%);
+            }
+            100% {
+                -webkit-transform: translateX(100%);
+            }
+        }
+        /*自定义直播源按钮*/
+        
+        .prism-channels-btn {
+            color: #FFF;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        footer p {
+            font-size: 14px;
+            color: #888;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>视频播放测试 <small>(mp4、m3u8、flv)</small></h1>
+        <form onsubmit="return changeVideoSource();">
+            <div id="video-source">
+                <input type="text" name="videoUrl" id="videoUrl" />
+                <span class="is-live-box"><input id="isLive" name="isLive" type="checkbox" value="1" autocomplete="false" /><label for="isLive">直播</label></span>
+                <button class="mybutton" type="submit">切换</button>
+            </div>
+        </form>
+        <div class="prism-player" id="player-con"></div>
+    </div>
+    <footer>
+        <p>&copy; 2019, 本站不提供视频内容，仅用于学习测试<a href="https://player.alicdn.com/aliplayer/index.html" target="_blank">Aliplayer</a>.</p>
+    </footer>
+    <script>
+        // 创建直播源按钮组件
+        var LiveChannelsComponent = Aliplayer.Component({
+            createEl: function(el) {
+                var controlBar = el.querySelector(".prism-controlbar");
+                var liveChannelBtn = document.createElement("div");
+                liveChannelBtn.innerText = "直播源";
+                liveChannelBtn.classList.add("prism-channels-btn");
+                liveChannelBtn.setAttribute("style", "float: left; margin-left: 15px; margin-top: 13px;");
+                controlBar.appendChild(liveChannelBtn);
+                // 直播源列表菜单创建
+                var slider = document.createElement("div");
+                slider.setAttribute("id", "live-channel-slider");
+                slider.setAttribute("class", '');
+                slider.innerHTML = "<ul class='channel-list'></ul>";
+                el.appendChild(slider);
+                var changeUlList = slider.firstElementChild;
+                var channels = [{
+                    group: "wscdns源",
+                    url: "https://www.sheng521.top/2908.html"
+                }, {
+                    name: "CCTV1综合",
+                    url: "https://cctvcnch5c.v.wscdns.com/live/cctv1_2/index.m3u8"
+                }, {
+                    name: "CCTV1综合",
+                    url: "http://cctvcnch5c.v.wscdns.com/live/cctv1_2/index.m3u8"
+                }, {
+                    name: "CCTV2财经",
+                    url: "https://cctvalih5c.v.myalicdn.com/live/cctv2_2/index.m3u8"
+                }, {
+                    name: "CCTV2财经",
+                    url: "http://cctvcnch5c.v.wscdns.com/live/cctv2_2/index.m3u8"
+                }, {
+                    name: "CCTV2财经",
+                    url: "http://wxcnlive.videocc.net/vod1/cctv2169/01.m3u8"
+                }, {
+                    name: "CCTV3综艺",
+                    url: "https://cctvtxyh5c.liveplay.myqcloud.com/live/cctv3_2_hd.m3u8"
+                }, {
+                    name: "CCTV3综艺",
+                    url: "https://cctvtxyh5c.liveplay.myqcloud.com/live/cctv3_2/index.m3u8"
+                }, {
+                    name: "CCTV3综艺",
+                    url: "http://cctvcnch5c.v.wscdns.com/live/cctv3_2/index.m3u8"
+                }, {
+                    name: "CCTV4国际",
+                    url: "https://cctvcnch5c.v.wscdns.com/live/cctv4_2/index.m3u8"
+                }, {
+                    name: "CCTV4国际",
+                    url: "http://cctvcnch5c.v.wscdns.com/live/cctv4_2/index.m3u8"
+                }, {
+                    name: "CCTV4国际",
+                    url: "https://cctvcnch5c.v.wscdns.com/live/cctvamerica_2/index.m3u8"
+                }, {
+                    name: "CCTV6电影",
+                    url: "http://cctvcnch5c.v.wscdns.com/live/cctv6_2/index.m3u8"
+                }, {
+                    name: "CCTV7军事农业",
+                    url: "https://cctvalih5c.v.myalicdn.com/live/cctv7_2/index.m3u8"
+                }, {
+                    name: "CCTV7军事农业",
+                    url: "http://cctvcnch5c.v.wscdns.com/live/cctv7_2/index.m3u8"
+                }, {
+                    name: "CCTV8电视剧",
+                    url: "http://cctvcnch5c.v.wscdns.com/live/cctv8_2/index.m3u8"
+                }, {
+                    name: "CCTV10科教",
+                    url: "http://cctvcnch5c.v.wscdns.com/live/cctv10_2/index.m3u8"
+                }, {
+                    name: "CCTV10科教",
+                    url: "http://hls-ott-zhibo.wasu.tv/live/128/index.m3u8"
+                }, {
+                    name: "CCTV11戏曲",
+                    url: "http://cctvcnch5c.v.wscdns.com/live/cctv11_2/index.m3u8"
+                }, {
+                    name: "CCTV12社会与法",
+                    url: "http://cctvcnch5c.v.wscdns.com/live/cctv12_2/index.m3u8"
+                }, {
+                    name: "CCTV13新闻",
+                    url: "https://cctvalih5c.v.myalicdn.com/live/cctv13_2/index.m3u8"
+                }, {
+                    name: "CCTV13新闻",
+                    url: "https://cctvcnch5c.v.wscdns.com/live/cctv13_2/index.m3u8"
+                }, {
+                    name: "CCTV13新闻",
+                    url: "http://cctvcnch5c.v.wscdns.com/live/cctv13_2/index.m3u8"
+                }, {
+                    name: "CCTV13新闻",
+                    url: "http://cctvcnch5c.v.wscdns.com/live/cctv13_2/index.m3u8"
+                }, {
+                    name: "CCTV14少儿",
+                    url: "https://cctvtxyh5c.liveplay.myqcloud.com/live/cctvchild_2_hd.m3u8"
+                }, {
+                    name: "CCTV14少儿",
+                    url: "https://cctvtxyh5c.liveplay.myqcloud.com/live/cctvchild_2/index.m3u8"
+                }, {
+                    name: "CCTV15音乐",
+                    url: "http://cctvcnch5c.v.wscdns.com/live/cctv15_2/index.m3u8"
+                }, {
+                    group: "其他源",
+                    url: "https://www.sheng521.top/2908.html"
+                }, {
+                    name: "北京卫视",
+                    url: "http://cctvalih5c.v.myalicdn.com/wstv/btv1_2/index.m3u8"
+                }, {
+                    name: "东方卫视",
+                    url: "http://hw-stream.kksmg.com/hls/channel1401/index.m3u8"
+                }, {
+                    name: "广东卫视",
+                    url: "http://cctvalih5c.v.myalicdn.com/wstv/guangdong_2/index.m3u8"
+                }, {
+                    name: "广西卫视",
+                    url: "http://cctvalih5c.v.myalicdn.com/wstv/guangxi_2/index.m3u8"
+                }, {
+                    name: "湖北卫视",
+                    url: "http://cctvalih5c.v.myalicdn.com/wstv/hubei_2/index.m3u8"
+                }, {
+                    name: "湖南卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/hunantv.m3u8"
+                }, {
+                    name: "江苏卫视",
+                    url: "http://live2.plus.hebtv.com/jsws/sd/live.m3u8"
+                }, {
+                    name: "重庆卫视",
+                    url: "http://cctvtxyh5c.liveplay.myqcloud.com/wstv/chongqing_2/index.m3u8"
+                }, {
+                    name: "四川卫视",
+                    url: "http://cctvksw.v.kcdnvip.com/wstv/sichuan_2/index.m3u8"
+                }, {
+                    name: "山东卫视",
+                    url: "http://cctvalih5c.v.myalicdn.com/wstv/shandong_2/index.m3u8"
+                }, {
+                    name: "山西卫视",
+                    url: "http://cctvksw.v.kcdnvip.com/wstv/shan1xi_2/index.m3u8"
+                }, {
+                    name: "天津卫视",
+                    url: "http://cctvalih5c.v.myalicdn.com/wstv/tianjin_2/index.m3u8"
+                }, {
+                    name: "东南卫视",
+                    url: "http://cctvalih5c.v.myalicdn.com/wstv/dongnan_2/index.m3u8"
+                }, {
+                    name: "云南卫视",
+                    url: "http://cctvtxyh5c.liveplay.myqcloud.com/wstv/yunnan_2/index.m3u8"
+                }, {
+                    name: "河北卫视",
+                    url: "http://weblive.hebtv.com/live/hbws_bq/index.m3u8"
+                }, {
+                    name: "河南卫视",
+                    url: "http://cctvalih5c.v.myalicdn.com/wstv/henan_2/index.m3u8"
+                }, {
+                    name: "浙江卫视",
+                    url: "http://111.40.205.79/PLTV/88888888/224/3221225612/index.m3u8"
+                }, {
+                    name: "安徽卫视",
+                    url: "http://cctvtxyh5c.liveplay.myqcloud.com/wstv/anhui_2/index.m3u8"
+                }, {
+                    name: "黑龙江卫视",
+                    url: "http://cctvtxyh5c.liveplay.myqcloud.com/wstv/heilongjiang_2/index.m3u8"
+                }, {
+                    name: "江西卫视",
+                    url: "http://cctvtxyh5c.liveplay.myqcloud.com/wstv/jiangxi_2/index.m3u8"
+                }, {
+                    name: "陕西卫视",
+                    url: "http://cctvalih5c.v.myalicdn.com/wstv/shan3xi_2/index.m3u8"
+                }, {
+                    name: "辽宁卫视",
+                    url: "http://cctvalih5c.v.myalicdn.com/wstv/liaoning_2/index.m3u8"
+                }, {
+                    name: "吉林卫视",
+                    url: "http://cctvksw.v.kcdnvip.com/wstv/jilin_2/index.m3u8"
+                }, {
+                    name: "新疆卫视",
+                    url: "http://livehyw2.sobeycache.com/xjtvs/zb01.m3u8"
+                }, {
+                    name: "青海卫视",
+                    url: "http://cctvksw.v.kcdnvip.com/wstv/qinghai_2/index.m3u8"
+                }, {
+                    name: "甘肃卫视",
+                    url: "http://cctvksw.v.kcdnvip.com/wstv/gansu_2/index.m3u8"
+                }, {
+                    name: "内蒙古卫视",
+                    url: "http://cctvksw.v.kcdnvip.com/wstv/neimenggu_2/index.m3u8"
+                }, {
+                    name: "宁夏卫视",
+                    url: "http://cctvksw.v.kcdnvip.com/wstv/ningxia_2/index.m3u8"
+                }, {
+                    name: "西藏卫视",
+                    url: "http://183.207.249.11/PLTV/3/224/3221225579/index.m3u8"
+                }, {
+                    name: "深圳卫视",
+                    url: "http://cctvalih5c.v.myalicdn.com/wstv/shenzhen_2/index.m3u8"
+                }, {
+                    name: "凤凰卫视中文台",
+                    url: "http://ydn11.b-cdn.net/fhzw.m3u8"
+                }, {
+                    group: "北邮测试源",
+                    url: "http://ivi.bupt.edu.cn"
+                }, {
+                    name: "CCTV-1综合高清",
+                    url: "http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8"
+                }, {
+                    name: "CCTV-3综艺高清",
+                    url: "http://ivi.bupt.edu.cn/hls/cctv3hd.m3u8"
+                }, {
+                    name: "CCTV-5体育高清",
+                    url: "http://ivi.bupt.edu.cn/hls/cctv5hd.m3u8"
+                }, {
+                    name: "CCTV-5+体育赛事高清",
+                    url: "http://ivi.bupt.edu.cn/hls/cctv5phd.m3u8"
+                }, {
+                    name: "CCTV-6电影高清",
+                    url: "http://ivi.bupt.edu.cn/hls/cctv6hd.m3u8"
+                }, {
+                    name: "CCTV-8电视剧高清",
+                    url: "http://ivi.bupt.edu.cn/hls/cctv8hd.m3u8"
+                }, {
+                    name: "CHC高清电影",
+                    url: "http://ivi.bupt.edu.cn/hls/chchd.m3u8"
+                }, {
+                    name: "北京卫视高清",
+                    url: "http://ivi.bupt.edu.cn/hls/btv1hd.m3u8"
+                }, {
+                    name: "北京文艺高清",
+                    url: "http://ivi.bupt.edu.cn/hls/btv2hd.m3u8"
+                }, {
+                    name: "北京体育高清",
+                    url: "http://ivi.bupt.edu.cn/hls/btv6hd.m3u8"
+                }, {
+                    name: "北京纪实高清",
+                    url: "http://ivi.bupt.edu.cn/hls/btv11hd.m3u8"
+                }, {
+                    name: "湖南卫视高清",
+                    url: "http://ivi.bupt.edu.cn/hls/hunanhd.m3u8"
+                }, {
+                    name: "浙江卫视高清",
+                    url: "http://ivi.bupt.edu.cn/hls/zjhd.m3u8"
+                }, {
+                    name: "江苏卫视高清",
+                    url: "http://ivi.bupt.edu.cn/hls/jshd.m3u8"
+                }, {
+                    name: "东方卫视高清",
+                    url: "http://ivi.bupt.edu.cn/hls/dfhd.m3u8"
+                }, {
+                    name: "安徽卫视高清",
+                    url: "http://ivi.bupt.edu.cn/hls/ahhd.m3u8"
+                }, {
+                    name: "黑龙江卫视高清",
+                    url: "http://ivi.bupt.edu.cn/hls/hljhd.m3u8"
+                }, {
+                    name: "辽宁卫视高清",
+                    url: "http://ivi.bupt.edu.cn/hls/lnhd.m3u8"
+                }, {
+                    name: "深圳卫视高清",
+                    url: "http://ivi.bupt.edu.cn/hls/szhd.m3u8"
+                }, {
+                    name: "广东卫视高清",
+                    url: "http://ivi.bupt.edu.cn/hls/gdhd.m3u8"
+                }, {
+                    name: "天津卫视高清",
+                    url: "http://ivi.bupt.edu.cn/hls/tjhd.m3u8"
+                }, {
+                    name: "湖北卫视高清",
+                    url: "http://ivi.bupt.edu.cn/hls/hbhd.m3u8"
+                }, {
+                    name: "山东卫视高清",
+                    url: "http://ivi.bupt.edu.cn/hls/sdhd.m3u8"
+                }, {
+                    name: "重庆卫视高清",
+                    url: "http://ivi.bupt.edu.cn/hls/cqhd.m3u8"
+                }, {
+                    name: "CCTV-1综合",
+                    url: "http://ivi.bupt.edu.cn/hls/cctv1.m3u8"
+                }, {
+                    name: "CCTV-2财经",
+                    url: "http://ivi.bupt.edu.cn/hls/cctv2.m3u8"
+                }, {
+                    name: "CCTV-3综艺",
+                    url: "http://ivi.bupt.edu.cn/hls/cctv3.m3u8"
+                }, {
+                    name: "CCTV-4中文国际",
+                    url: "http://ivi.bupt.edu.cn/hls/cctv4.m3u8"
+                }, {
+                    name: "CCTV-5体育",
+                    url: "http://ivi.bupt.edu.cn/hls/cctv5.m3u8"
+                }, {
+                    name: "CCTV-6电影",
+                    url: "http://ivi.bupt.edu.cn/hls/cctv6.m3u8"
+                }, {
+                    name: "CCTV-7军事农业",
+                    url: "http://ivi.bupt.edu.cn/hls/cctv7.m3u8"
+                }, {
+                    name: "CCTV-8电视剧",
+                    url: "http://ivi.bupt.edu.cn/hls/cctv8.m3u8"
+                }, {
+                    name: "CCTV-9纪录",
+                    url: "http://ivi.bupt.edu.cn/hls/cctv9.m3u8"
+                }, {
+                    name: "CCTV-10科教",
+                    url: "http://ivi.bupt.edu.cn/hls/cctv10.m3u8"
+                }, {
+                    name: "CCTV-11戏曲",
+                    url: "http://ivi.bupt.edu.cn/hls/cctv11.m3u8"
+                }, {
+                    name: "CCTV-12社会与法",
+                    url: "http://ivi.bupt.edu.cn/hls/cctv12.m3u8"
+                }, {
+                    name: "CCTV-13新闻",
+                    url: "http://ivi.bupt.edu.cn/hls/cctv13.m3u8"
+                }, {
+                    name: "CCTV-14少儿",
+                    url: "http://ivi.bupt.edu.cn/hls/cctv14.m3u8"
+                }, {
+                    name: "CCTV-15音乐",
+                    url: "http://ivi.bupt.edu.cn/hls/cctv15.m3u8"
+                }, {
+                    name: "CCTV-NEWS",
+                    url: "http://ivi.bupt.edu.cn/hls/cctv16.m3u8"
+                }, {
+                    name: "北京卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/btv1.m3u8"
+                }, {
+                    name: "北京文艺",
+                    url: "http://ivi.bupt.edu.cn/hls/btv2.m3u8"
+                }, {
+                    name: "北京科教",
+                    url: "http://ivi.bupt.edu.cn/hls/btv3.m3u8"
+                }, {
+                    name: "北京影视",
+                    url: "http://ivi.bupt.edu.cn/hls/btv4.m3u8"
+                }, {
+                    name: "北京财经",
+                    url: "http://ivi.bupt.edu.cn/hls/btv5.m3u8"
+                }, {
+                    name: "北京体育",
+                    url: "http://ivi.bupt.edu.cn/hls/btv6.m3u8"
+                }, {
+                    name: "北京生活",
+                    url: "http://ivi.bupt.edu.cn/hls/btv7.m3u8"
+                }, {
+                    name: "北京青年",
+                    url: "http://ivi.bupt.edu.cn/hls/btv8.m3u8"
+                }, {
+                    name: "北京新闻",
+                    url: "http://ivi.bupt.edu.cn/hls/btv9.m3u8"
+                }, {
+                    name: "北京卡酷少儿",
+                    url: "http://ivi.bupt.edu.cn/hls/btv10.m3u8"
+                }, {
+                    name: "深圳卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/sztv.m3u8"
+                }, {
+                    name: "安徽卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/ahtv.m3u8"
+                }, {
+                    name: "河南卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/hntv.m3u8"
+                }, {
+                    name: "陕西卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/sxtv.m3u8"
+                }, {
+                    name: "吉林卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/jltv.m3u8"
+                }, {
+                    name: "广东卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/gdtv.m3u8"
+                }, {
+                    name: "山东卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/sdtv.m3u8"
+                }, {
+                    name: "湖北卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/hbtv.m3u8"
+                }, {
+                    name: "广西卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/gxtv.m3u8"
+                }, {
+                    name: "河北卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/hebtv.m3u8"
+                }, {
+                    name: "西藏卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/xztv.m3u8"
+                }, {
+                    name: "内蒙古卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/nmtv.m3u8"
+                }, {
+                    name: "青海卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/qhtv.m3u8"
+                }, {
+                    name: "四川卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/sctv.m3u8"
+                }, {
+                    name: "江苏卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/jstv.m3u8"
+                }, {
+                    name: "天津卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/tjtv.m3u8"
+                }, {
+                    name: "山西卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/sxrtv.m3u8"
+                }, {
+                    name: "辽宁卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/lntv.m3u8"
+                }, {
+                    name: "厦门卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/xmtv.m3u8"
+                }, {
+                    name: "新疆卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/xjtv.m3u8"
+                }, {
+                    name: "东方卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/dftv.m3u8"
+                }, {
+                    name: "黑龙江卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/hljtv.m3u8"
+                }, {
+                    name: "湖南卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/hunantv.m3u8"
+                }, {
+                    name: "云南卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/yntv.m3u8"
+                }, {
+                    name: "江西卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/jxtv.m3u8"
+                }, {
+                    name: "福建东南卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/dntv.m3u8"
+                }, {
+                    name: "浙江卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/zjtv.m3u8"
+                }, {
+                    name: "贵州卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/gztv.m3u8"
+                }, {
+                    name: "宁夏卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/nxtv.m3u8"
+                }, {
+                    name: "甘肃卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/gstv.m3u8"
+                }, {
+                    name: "重庆卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/cqtv.m3u8"
+                }, {
+                    name: "兵团卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/bttv.m3u8"
+                }, {
+                    name: "旅游卫视",
+                    url: "http://ivi.bupt.edu.cn/hls/lytv.m3u"
+                }];
+                for (var i = 0; i < channels.length; i++) {
+                    var channelItem = document.createElement("li");
+                    if (!channels[i].group) {
+                        channelItem.setAttribute("rel", channels[i].url);
+                        channelItem.classList.add("mybutton");
+                        channelItem.innerText = channels[i].name;
+                        changeUlList.appendChild(channelItem);
+                        channelItem.onclick = function() {
+                            changeSourceUrl(this.getAttribute("rel"), true);
+                        }
+                    } else {
+                        channelItem.classList.add("sources-group");
+                        channelItem.innerHTML = "<a href='" + channels[i].url + "' target='_blank'>" + channels[i].group + "</a>";
+                        changeUlList.appendChild(channelItem);
+                    }
+                }
+                // 点击显示隐藏频道列表
+                liveChannelBtn.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                    var isOpen = slider.classList.contains('slide-in');
+                    slider.setAttribute('class', isOpen ? 'slide-out' : 'slide-in');
+                });
+            },
+            toggleChannelList: function() {
+                var slider = document.querySelector("#live-channel-slider");
+                var isOpen = slider.classList.contains('slide-in');
+                slider.setAttribute('class', isOpen ? 'slide-out' : 'slide-in');
+            },
+            hideChannelList: function() {
+                var slider = document.querySelector("#live-channel-slider");
+                var isOpen = slider.classList.contains('slide-in');
+                if (isOpen) {
+                    slider.setAttribute('class', 'slide-out');
+                }
+            }
+        });
+        const startUrl = "https://player.alicdn.com/video/aliyunmedia.mp4";
+        const skinLayout = [{
+            "name": "bigPlayButton",
+            "align": "cc"
+        }, {
+            "name": "H5Loading",
+            "align": "cc"
+        }, {
+            "name": "errorDisplay",
+            "align": "tlabs",
+            "x": 0,
+            "y": 0
+        }, {
+            "name": "infoDisplay"
+        }, {
+            "name": "tooltip",
+            "align": "blabs",
+            "x": 0,
+            "y": 56
+        }, {
+            "name": "thumbnail"
+        }, {
+            "name": "controlBar",
+            "align": "blabs",
+            "x": 0,
+            "y": 0,
+            "children": [{
+                "name": "progress",
+                "align": "blabs",
+                "x": 0,
+                "y": 44
+            }, {
+                "name": "playButton",
+                "align": "tl",
+                "x": 15,
+                "y": 12
+            }, {
+                "name": "timeDisplay",
+                "align": "tl",
+                "x": 15,
+                "y": 3
+            }, {
+                "name": "fullScreenButton",
+                "align": "tr",
+                "x": 10,
+                "y": 12
+            }, {
+                "name": "setting",
+                "align": "tr",
+                "x": 15,
+                "y": 12
+            }, {
+                "name": "volume",
+                "align": "tr",
+                "x": 5,
+                "y": 10
+            }]
+        }];
+        var player = new Aliplayer({
+            "id": "player-con",
+            "source": startUrl,
+            "width": "100%",
+            "height": "500px",
+            "autoplay": false,
+            "isLive": false,
+            "rePlay": false,
+            "playsinline": true,
+            "preload": true,
+            "controlBarVisibility": "hover",
+            "useH5Prism": true,
+            "components": [{
+                // 记忆播放组件
+                "name": 'MemoryPlayComponent',
+                "type": AliPlayerComponent.MemoryPlayComponent,
+                "args": [true] // 自动定点播放
+            }, {
+                // 直播源组件
+                "name": "LiveChannelsComponent",
+                "type": LiveChannelsComponent
+            }],
+            "skinLayout": skinLayout
+        }, function(player) {
+            var sourceElm = document.getElementById("videoUrl");
+            sourceElm.value = startUrl;
+
+            mouseClickPlayOrPause();
+        });
+
+        // 切换播放源
+        function changeVideoSource() {
+            var sourceElm = document.getElementById("videoUrl");
+            var sourceUrl = sourceElm.value;
+            var isLiveElm = document.getElementById("isLive");
+            var isLive = isLiveElm.checked;
+            if (sourceUrl && sourceUrl.trim() != "" && player) {
+                changeSourceUrl(sourceUrl, isLive);
+            } else {
+                alert("播放地址不能为空！");
+            }
+            return false;
+        }
+
+        function changeSourceUrl(url, isLive) {
+            console.log(url);
+            // 地址协议不一样切换地处理
+            player.dispose(); // 销毁
+            // 重新创建
+            setTimeout(function() {
+                player = new Aliplayer({
+                    id: 'player-con',
+                    autoplay: true,
+                    isLive: isLive,
+                    playsinline: true,
+                    source: url,
+                    components: [{
+                        // 自动定点播放
+                        name: 'MemoryPlayComponent',
+                        type: AliPlayerComponent.MemoryPlayComponent,
+                        args: [true]
+                    }, {
+                        // 直播源组件
+                        "name": "LiveChannelsComponent",
+                        "type": LiveChannelsComponent
+                    }],
+                    skinLayout: skinLayout
+                }, function(player) {
+                    var sourceElm = document.getElementById("videoUrl");
+                    sourceElm.value = url;
+                    var isLiveElm = document.getElementById("isLive");
+                    isLiveElm.checked = isLive;
+                    // 鼠标事件
+                    mouseClickPlayOrPause();
+                });
+            }, 1000);
+        }
+
+        function mouseClickPlayOrPause() {
+            // 鼠标点击暂停与播放
+            var playerContainer = document.querySelector("#player-con video");
+            playerContainer.onmouseup = function(event) {
+                event.stopPropagation(); // 阻止冒泡事件
+                event.preventDefault();
+                console.log(event.button);
+                if (event.button == 0) {
+                    // 鼠标左键
+                    var bigPlayer = document.querySelector("#player-con .prism-big-play-btn");
+                    if (player.getStatus() == 'playing') {
+                        player.pause();
+                        bigPlayer.setAttribute("style", "display: block");
+                    } else if (player.getStatus() == 'pause') {
+                        player.play();
+                        bigPlayer.setAttribute("style", "display: none");
+                    }
+                    var component = player.getComponent('LiveChannelsComponent');
+                    if (component) {
+                        component.hideChannelList();
+                    }
+                }
+            };
+            // 全击显示或退出全屏
+            playerContainer.ondblclick = function(event) {
+                event.stopPropagation(); // 阻止冒泡事件
+                event.preventDefault();
+                if (player.fullscreenService.getIsFullScreen()) {
+                    player.fullscreenService.cancelFullScreen();
+                } else {
+                    player.fullscreenService.requestFullScreen();
+                }
+            };
+            // 鼠标移动显示控制条
+            document.querySelector("#player-con").onmousemove = function(event) {
+                event.preventDefault();
+                var controllerBar = document.querySelector("#player-con .prism-controlbar");
+                if (controllerBar) {
+                    controllerBar.style.display = "block";
+                }
+            }
+        }
+
+        window.onload = function() {
+            document.onkeydown = function(e) {
+                var keyNum = window.event ? e.keyCode : e.which;
+                // 空格暂停播放
+                if (keyNum == '32') {
+                    var bigPlayer = document.querySelector("#player-con .prism-big-play-btn");
+                    if (player.getStatus() == 'playing') {
+                        player.pause();
+                        bigPlayer.setAttribute("style", "display: block");
+                    } else if (player.getStatus() == 'pause') {
+                        player.play();
+                        bigPlayer.setAttribute("style", "display: none");
+                    }
+                } else if (keyNum == '37') {
+                    // 快进
+                    var videotimes = player.getDuration();
+                    var playnum = player.getCurrentTime();
+                    playnum = parseInt(playnum - 10);
+                    if (playnum <= (videotimes - 30)) {
+                        player.seek(playnum);
+                    }
+                } else if (keyNum == '39') {
+                    // 快退
+                    var videotimes = player.getDuration();
+                    var playnum = player.getCurrentTime();
+                    playnum = parseInt(playnum + 10);
+                    if (playnum > 15) {
+                        player.seek(playnum);
+                    } else {
+                        player.seek(0);
+                    }
+                } else if (keyNum == '38') {
+                    // 音量大
+                    var volume = parseInt(player.getVolume() * 100);
+                    if (volume < 100) {
+                        volume = (volume + 1) / 100;
+                        console.log(volume);
+                        player.setVolume(volume);
+                    }
+                } else if (keyNum == '40') {
+                    // 音量小
+                    var volume = parseInt(player.getVolume() * 100);
+                    if (volume > 0) {
+                        volume = (volume - 1) / 100;
+                        player.setVolume(volume);
+                    }
+                }
+            };
+
+            document.addEventListener("click", function(event) {
+                var component = player.getComponent('LiveChannelsComponent');
+                if (component) {
+                    component.hideChannelList();
+                }
+            });
+        };
+    </script>
+</body>

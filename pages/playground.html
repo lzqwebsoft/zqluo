@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="-ZQLUO-的个人小工具开发游乐园。在这里汇集了我平时实践与开发的一些好玩、有趣的小项目和小工具源码，纯前端技术实现展示。">
+    <meta name="keywords" content="ZQLUO, 工具, 游乐园, 前端开发, 实践, 纯前端, 项目展示, Playground">
+    <title>-ZQLUO-的个人小工具开发游乐园</title>
+    <style>
+        :root {
+            --primary-color: #9147ff;
+            --primary-light: #ab70ff;
+            --secondary-color: #fc6183;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-main: #222222;
+            --text-secondary: #595959;
+            --text-lighter: #8c8c8c;
+            --border-radius: 16px;
+            --transition-speed: 0.35s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", "Source Han Sans SC", "Noto Sans CJK SC", "WenQuanYi Micro Hei", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* 顶部导航与背景装饰 */
+        .page-header {
+            position: relative;
+            padding: 90px 20px 70px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(145, 71, 255, 0.04) 0%, rgba(252, 97, 131, 0.04) 100%);
+            overflow: hidden;
+        }
+
+        .header-bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            z-index: 0;
+            filter: blur(50px);
+            opacity: 0.6;
+            animation: floatShape 10s infinite alternate ease-in-out;
+        }
+
+        .shape-1 {
+            background: linear-gradient(135deg, #9147ff44 0%, #ab70ff11 100%);
+            width: 350px;
+            height: 350px;
+            top: -100px;
+            left: -50px;
+        }
+
+        .shape-2 {
+            background: linear-gradient(135deg, #fc618344 0%, #ff8da611 100%);
+            width: 450px;
+            height: 450px;
+            bottom: -150px;
+            right: -100px;
+            animation-duration: 12s;
+            animation-delay: -5s;
+        }
+
+        @keyframes floatShape {
+            0% {
+                transform: translateY(0) scale(1);
+            }
+
+            100% {
+                transform: translateY(-30px) scale(1.05);
+            }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .title {
+            font-size: 2.6rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--text-main);
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-top: 28px;
+            font-weight: 400;
+        }
+
+        /* 主体内容 */
+        .main-container {
+            flex: 1;
+            max-width: 1200px;
+            margin: -30px auto 70px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
+        /* 项目列表网格布局 */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 28px;
+        }
+
+        /* 项目卡片 */
+        .project-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 28px 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            opacity: 0;
+            transition: opacity var(--transition-speed);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(145, 71, 255, 0.08);
+            border-color: rgba(145, 71, 255, 0.1);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .card-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: rgba(145, 71, 255, 0.06);
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            margin-right: 18px;
+            transition: all var(--transition-speed) cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .project-card:hover .card-icon {
+            background: var(--primary-color);
+            color: #fff;
+            transform: rotate(-10deg) scale(1.1);
+            box-shadow: 0 8px 16px rgba(145, 71, 255, 0.2);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            flex: 1;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f3f3f3;
+            padding-top: 18px;
+            font-size: 0.85rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tech-tag {
+            background: #f5f5f5;
+            color: var(--text-secondary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            transition: all var(--transition-speed);
+            font-weight: 500;
+        }
+
+        .project-card:hover .tech-tag {
+            background: rgba(145, 71, 255, 0.08);
+            color: var(--primary-color);
+        }
+
+        .card-action {
+            color: var(--primary-color);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            opacity: 0.7;
+            transition: all var(--transition-speed);
+        }
+
+        .card-action svg {
+            margin-left: 4px;
+            width: 18px;
+            height: 18px;
+            transition: transform var(--transition-speed);
+        }
+
+        .project-card:hover .card-action {
+            opacity: 1;
+            color: var(--secondary-color);
+        }
+
+        .project-card:hover .card-action svg {
+            transform: translateX(6px);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 底部导航或版权 */
+        .page-footer {
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--text-lighter);
+            font-size: 0.95rem;
+            margin-top: auto;
+        }
+
+        .nav-back {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 30px;
+            background: #fff;
+            color: var(--text-main);
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+            transition: all var(--transition-speed);
+            margin-bottom: 24px;
+            border: 1px solid transparent;
+        }
+
+        .nav-back:hover {
+            box-shadow: 0 8px 25px rgba(145, 71, 255, 0.15);
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            border-color: rgba(145, 71, 255, 0.2);
+        }
+
+        .nav-back svg {
+            margin-right: 8px;
+            width: 20px;
+            height: 20px;
+            transition: transform var(--transition-speed);
+        }
+
+        .nav-back:hover svg {
+            transform: translateX(-4px);
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.1rem;
+            }
+
+            .page-header {
+                padding: 60px 20px 50px;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .main-container {
+                margin-top: -20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 顶部说明区域 - SEO 优化的 H1 -->
+    <header class="page-header">
+        <div class="header-bg-shape shape-1"></div>
+        <div class="header-bg-shape shape-2"></div>
+        <div class="header-content">
+            <h1 class="title">-ZQLUO-的个人小工具开发游乐园</h1>
+            <p class="subtitle">这里是用于实践各种好玩、有趣小项目与前端技术的代码游乐场，保持热爱，奔赴山海！</p>
+        </div>
+    </header>
+
+    <!-- 主体项目展示，语义化标签 maintain SEO -->
+    <main class="main-container">
+        <!-- 动态渲染的项目网格列表 -->
+        <section class="project-grid" id="project-list" aria-label="项目列表">
+            <!-- 卡片由JS渲染 -->
+        </section>
+    </main>
+
+    <footer class="page-footer">
+        <a href="/" class="nav-back" aria-label="返回首页">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M19 12H5"></path>
+                <path d="M12 19l-7-7 7-7"></path>
+            </svg>
+            返回首页
+        </a>
+        <p>© <span id="year"></span> -ZQLUO-. Keep Coding, Keep Fun.</p>
+    </footer>
+
+    <!-- 项目数据与渲染逻辑分离，便于后续扩展 -->
+    <script>
+        // 自动更新年份
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // 模拟的小工具项目数据集合（便于后续维护增加）
+        const projects = [
+            {
+                id: 1,
+                name: "Aliplayer 播放器",
+                desc: "集成阿里云视频播放器 SDK，支持 HLS、FLV、MP4 等多种流媒体协议，提供极佳的 Web 端视听体验。",
+                icon: "🎬",
+                tags: ["Aliplayer", "Video"],
+                link: "player.html"
+            },
+            {
+                id: 2,
+                name: "iPhone 历年参数对比",
+                desc: "收录了从初代 iPhone 至今的所有机型详细核心参数，支持快速过滤与横向对比，果粉必备手册。",
+                icon: "📱",
+                tags: ["iPhone", "Specs"],
+                link: "iphone.html"
+            },
+        ];
+
+        // 动态注入项目卡片DOM结构
+        function renderProjects() {
+            const container = document.getElementById('project-list');
+
+            const html = projects.map((project, index) => {
+                // 逐个添加交错动画延迟
+                const delay = index * 0.1;
+                const tagsHtml = project.tags.map(tag => `<span class="tech-tag">${tag}</span>`).join('');
+
+                return `
+                    <a href="${project.link}" class="project-card" style="animation-delay: ${delay}s" aria-label="查看 ${project.name} 详情">
+                        <div class="card-header">
+                            <div class="card-icon">${project.icon}</div>
+                            <h2 class="card-title">${project.name}</h2>
+                        </div>
+                        <div class="card-desc">
+                            ${project.desc}
+                        </div>
+                        <div class="card-footer">
+                            <div class="tech-tags">
+                                ${tagsHtml}
+                            </div>
+                            <div class="card-action">
+                                查看详情
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14"></path>
+                                    <path d="m12 5 7 7-7 7"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                `;
+            }).join('');
+
+            container.innerHTML = html;
+        }
+
+        // 确保DOM结构加载完毕后进行渲染，提升体验
+        document.addEventListener('DOMContentLoaded', renderProjects);
+    </script>
+</body>
+
+</html>

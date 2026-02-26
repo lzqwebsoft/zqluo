@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0,viewport-fit=cover">
+    <title>-ZQLUO-</title>
+    <style type="text/css">
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, PingFang SC, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif;
+        }
+
+        .page-background {
+            position: fixed;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .container {
+            text-align: center;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 6px;
+            max-width: 1050px;
+            padding-top: 80px;
+            margin: 80px auto 0;
+            background-image: url("/assets/images/1.jpg");
+            box-shadow: 0 0 11px 3px rgba(0, 0, 0, 0.15);
+            padding: 80px 16px 30px;
+        }
+
+        @media(max-width: 960px) {
+            .container {
+                margin-top: 16px;
+            }
+        }
+
+        .container .header {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto;
+            margin-bottom: 25px;
+            background: #fff;
+            border-radius: 50%;
+        }
+
+        .container .header img {
+            display: inline-block;
+            max-width: 100%;
+            height: auto;
+            border: 5px solid rgba(31, 53, 67, 0.10);
+            border-radius: 50%;
+        }
+
+        .container .author h2 {
+            font-weight: 500;
+            color: #222;
+        }
+
+        .container .author .designation {
+            font-size: 18px;
+            margin-bottom: 25px;
+            color: #222;
+        }
+
+        .container .author .designation .typed-cursor {
+            border-right: .15em solid #222;
+            animation:
+                typing 3.5s steps(40, end),
+                blink-caret .75s step-end infinite;
+        }
+
+        /* FROM https://css-tricks.com/snippets/css/typewriter-effect/ */
+        @keyframes typing {
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
+        }
+
+        @keyframes blink-caret {
+
+            from,
+            to {
+                border-color: transparent
+            }
+
+            50% {
+                border-color: #222;
+            }
+        }
+
+        .container .text {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+            color: #222;
+        }
+
+        .container .link-btn {
+            display: block;
+            overflow: hidden;
+            padding: 10px 0;
+        }
+
+        .container .theme-btn {
+            margin: 7px 10px;
+            min-width: 70px;
+            transition: all 0.3s;
+        }
+
+        .container .link-btn a {
+            text-decoration: none;
+            cursor: pointer;
+            color: #fc6183;
+            display: inline-block;
+        }
+
+        .container .link-btn .btn-style-one {
+            font-size: 14px;
+            line-height: 22px;
+            text-align: center;
+            padding: 14px 30px;
+            color: #ffffff;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            border-radius: 40px;
+            background: #9147ff;
+        }
+
+        .container .link-btn .btn-style-one:hover {
+            background: #222;
+        }
+
+        .container .link-btn .btn-style-two {
+            font-size: 14px;
+            line-height: 22px;
+            text-align: center;
+            padding: 13px 30px;
+            color: #222;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            border-radius: 40px;
+            background: transparent;
+            border: 1px solid #d9d9d9;
+        }
+
+        .container .link-btn .btn-style-two:hover {
+            background: #9147ff;
+            color: #FFF;
+            border-color: #9147ff;
+        }
+
+        .container .link-btn .btn-style-three {
+            font-size: 14px;
+            line-height: 22px;
+            text-align: center;
+            padding: 13px 30px;
+            color: #fc6183;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            border-radius: 40px;
+            background: transparent;
+            border: 1px solid #fc6183;
+        }
+
+        .container .link-btn .btn-style-three:hover {
+            background: #fc6183;
+            color: #FFF;
+            border-color: #fc6183;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-background">
+        <canvas id="canvas"></canvas>
+    </div>
+    <div class="container">
+        <div class="header">
+            <img src="/assets/images/my.jpg" />
+        </div>
+        <div class="author">
+            <h2>-ZQLUO-</h2>
+            <div class="designation">你好呀，我是
+                <div class="typing-title" style="display: none;">
+                    <p><strong>90后.</strong></p>
+                    <p><strong>程序员.</strong></p>
+                    <p><strong>后端开发工程师.</strong></p>
+                    <p><strong>移动开发工程师.</strong></p>
+                    <p><strong>全栈工程师.</strong></p>
+                </div>
+                <span class="typed-title"><strong>码农.</strong></span>
+            </div>
+        </div>
+        <div class="text">
+            从事软件开发工作<span id="working-years">14</span>年有余，标准的90后，热爱编程，兴趣广泛，
+            略通Java、Android、iOS、Flutter、Go、PHP、Python、Vue、Javascript、HTML、CSS；前后端与移动平台都有涉猎，
+            还会点Vibe coding，应该可以算是全栈工程师。
+        </div>
+        <div class="link-btn">
+            <a href="https://github.com/lzqwebsoft" class="theme-btn btn-style-one">GitHub</a>
+            <a href="https://blog.zqluo.com" class="theme-btn btn-style-two">博客</a>
+            <a href="/pages/playground.html" class="theme-btn btn-style-three">Playground</a>
+        </div>
+    </div>
+    <!-- FROM http://v.bootstrapmb.com/2019/6/781485123/ -->
+    <script src="/assets/javascripts/jquery.js"></script>
+    <script src="/assets/javascripts/jquery-type.js"></script>
+    <script src="/assets/javascripts/particle-alone.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".typed-title").typed({
+                stringsElement: $(".typing-title"),
+                cursorChar: "",
+                backDelay: 1200,
+                typeSpeed: 1,
+                loop: true
+            });
+            console.log("关于页面源码的出处说明:");
+            console.log("页面模板来自于：http://v.bootstrapmb.com/2019/6/781485123/");
+            console.log("光标输入特效来自于：https://css-tricks.com/snippets/css/typewriter-effect/");
+            // 计算工作年限
+            var current = new Date();
+            var currentYear = current.getFullYear();
+            var workingYears = currentYear >= 2019 ? currentYear - 2012 : 2019 - 2012;
+            $("#working-years").text(workingYears);
+        });
+    </script>
+
+</body>
+
+</html>

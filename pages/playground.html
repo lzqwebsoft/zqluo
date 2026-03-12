@@ -342,6 +342,40 @@
             transform: translateX(-4px);
         }
 
+        .footer-beian {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .footer-beian a {
+            display: inline-flex;
+            align-items: center;
+            color: #6c757d;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-beian a img {
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        .footer-beian a:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+
+        .footer-copy {
+            margin: 0;
+            opacity: 0.8;
+        }
+
         /* 响应式调整 */
         @media (max-width: 768px) {
             .title {
@@ -397,7 +431,14 @@
             </svg>
             返回首页
         </a>
-        <p><a href="https://beian.miit.gov.cn/" target="_blank">沪ICP备2025128934号-2</a> &nbsp;&nbsp; © <span id="year"></span> -ZQLUO-. Keep Coding, Keep Fun.</p>
+        <div class="footer-beian">
+            <a href="https://beian.mps.gov.cn/#/query/webSearch?code=31011202022211" rel="noreferrer" target="_blank">
+                <img src="/assets/images/filing.png" alt="公网安备" />
+                <span>沪公网安备31011202022211号</span>
+            </a>
+            <a href="https://beian.miit.gov.cn/" target="_blank">沪ICP备2025128934号-2</a>
+        </div>
+        <p class="footer-copy">© <span id="year"></span> -ZQLUO-. Keep Coding, Keep Fun.</p>
     </footer>
 
     <!-- 项目数据与渲染逻辑分离，便于后续扩展 -->

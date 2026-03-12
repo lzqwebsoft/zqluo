@@ -189,20 +189,45 @@
 
         .footer {
             text-align: center;
-            padding: 40px 0 20px;
+            padding: 40px 20px 20px;
             color: #666;
             font-size: 14px;
             width: 100%;
+            box-sizing: border-box;
         }
 
-        .footer a {
+        .footer-beian {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .footer-beian a {
+            display: inline-flex;
+            align-items: center;
             color: #666;
             text-decoration: none;
+            transition: color 0.3s;
         }
 
-        .footer a:hover {
+        .footer-beian a img {
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        .footer-beian a:hover {
             color: #fc6183;
             text-decoration: underline;
+        }
+
+        .footer-copy {
+            margin: 0;
+            opacity: 0.8;
         }
     </style>
 </head>
@@ -240,11 +265,14 @@
         </div>
     </div>
     <div class="footer">
-        <p>
-            <a href="https://beian.miit.gov.cn/" target="_blank">沪ICP备2025128934号-2</a>
-            &nbsp;&nbsp;
-            © 2026 zqluo.com 版权所有
-        </p>
+        <div class="footer-beian">
+            <a href="https://beian.mps.gov.cn/#/query/webSearch?code=31011202022211" rel="noreferrer" target="_blank">
+                <img src="/assets/images/filing.png" alt="备案图标" />
+                <span>沪公网安备31011202022211号</span>
+            </a>
+            <a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">沪ICP备2025128934号-2</a>
+        </div>
+        <p class="footer-copy">© 2026 zqluo.com 版权所有</p>
     </div>
     <!-- FROM http://v.bootstrapmb.com/2019/6/781485123/ -->
     <script src="/assets/javascripts/jquery.js"></script>

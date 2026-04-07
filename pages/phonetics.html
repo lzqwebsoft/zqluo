@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英语国际音标48个发音对照表 - 英语音标学习点读练习</title>
+    <meta name="description"
+        content="提供最完整的英语国际音标48个音标发音对照表，包含20个元音和28个辅音的标准读法。支持在线点读、标准发音跟读练习，是您进行英语音标学习、纠正英语音标读法的最佳工具。">
+    <meta name="keywords" content="英语国际音标, 48个音标, 英语音标学习, 音标48个发音对照表, 英语音标读法, 英语音标发音, 元音, 辅音, 26个字母标准发音">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f1f5f9;
+            /* Slightly darker background for contrast with glassmorphism */
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            padding: 20px 15px;
+            line-height: 1.4;
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section.level-1 {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 30px;
+            border-radius: 24px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 24px -6px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+        }
+
+        .section.level-2 {
+            margin-bottom: 30px;
+        }
+
+        .section.level-3 {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+        }
+
+        .level-1>.section-title {
+            font-size: 26px;
+            border-bottom: 2px solid rgba(226, 232, 240, 0.6);
+            padding-bottom: 16px;
+            margin-bottom: 28px;
+        }
+
+        .level-2>.section-title {
+            font-size: 20px;
+            color: #334155;
+            margin-top: 32px;
+            border-left: 4px solid #3b82f6;
+            padding-left: 14px;
+            line-height: 1;
+        }
+
+        .level-3>.section-title {
+            font-size: 16px;
+            color: #475569;
+            margin-top: 24px;
+        }
+
+        .section-title small {
+            font-weight: 400;
+            color: #64748b;
+            font-size: 0.85em;
+        }
+
+        .phonetic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            gap: 16px;
+        }
+
+        .phonetic-card {
+            position: relative;
+            background: linear-gradient(135deg, var(--grad-start, #ffffff) 0%, var(--grad-end, #f8fafc) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 18px;
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.05), inset 0 2px 8px rgba(255, 255, 255, 0.4);
+        }
+
+        .phonetic-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 14px 25px -5px rgba(0, 0, 0, 0.1), inset 0 2px 10px rgba(255, 255, 255, 0.8);
+            border-color: rgba(255, 255, 255, 1);
+        }
+
+        .phonetic-card.playing {
+            transform: scale(0.95);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+        }
+
+        .card-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 10px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .phonetic-symbol {
+            font-size: 26px;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 2px;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+            transition: all 0.2s ease;
+        }
+
+        .phonetic-example {
+            font-size: 13px;
+            color: #475569;
+            font-weight: 500;
+        }
+
+        .phonetic-example u {
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 2px;
+            color: #2563eb;
+            font-weight: 700;
+        }
+
+        .speaker-icon {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 16px;
+            height: 16px;
+            background-color: #64748b;
+            -webkit-mask: url('../assets/images/speaker.svg') no-repeat center / contain;
+            mask: url('../assets/images/speaker.svg') no-repeat center / contain;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        .phonetic-card:hover .speaker-icon {
+            opacity: 1;
+            background-color: #3b82f6;
+            transform: scale(1.1);
+        }
+
+        .details-section {
+            height: 32px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            transition: background 0.3s ease;
+        }
+
+        .phonetic-card:hover .details-section {
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .details-btn {
+            background: none;
+            border: none;
+            font-size: 12px;
+            font-weight: 600;
+            color: #475569;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            transition: color 0.2s ease;
+        }
+
+        .details-btn:hover {
+            color: #2563eb;
+        }
+
+        .phonetic-card.playing .phonetic-symbol {
+            color: #2563eb;
+            transform: scale(1.15);
+        }
+
+        .speaker-waves {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .wave {
+            position: absolute;
+            border: 2px solid #3b82f6;
+            border-radius: 50%;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .phonetic-card.playing .wave {
+            animation: waveAnimation 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes waveAnimation {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .modal-symbol {
+            font-size: 56px;
+            font-weight: 800;
+            color: #2563eb;
+            margin-bottom: 20px;
+        }
+
+        .modal-info {
+            text-align: left;
+            margin-bottom: 24px;
+        }
+
+        .modal-info h3 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+
+        .modal-info p {
+            font-size: 16px;
+            color: #1e293b;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .close-btn {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+        }
+
+        .close-btn:hover {
+            opacity: 0.9;
+        }
+
+        @media (min-width: 768px) {
+            .phonetic-grid {
+                grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+                gap: 20px;
+            }
+
+            .section.level-1 {
+                padding: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .phonetic-grid {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+                gap: 12px;
+            }
+
+            .section.level-1 {
+                padding: 20px 15px;
+                border-radius: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header style="padding: 20px 0; text-align: center;">
+            <h1 style="font-size: 24px; color: #0f172a; margin-bottom: 10px;">英语国际音标 48个发音对照表</h1>
+            <p style="font-size: 14px; color: #64748b; max-width: 600px; margin: 0 auto; line-height: 1.6;">
+                欢迎使用英语音标学习点读工具。本页涵盖了标准的<strong>48个音标</strong>，包括<strong>元音</strong>和<strong>辅音</strong>的分类读法、发音特点及例词，助您掌握最正宗的英语国际音标读法。
+            </p>
+        </header>
+        <div id="app">
+            <div class="section level-1">
+                <div class="section-title">元音(20个) <small>Vowels</small></div>
+                <div class="section level-2">
+                    <div class="section-title">单元音 <small>Monophthongs</small></div>
+                    <div class="section level-3">
+                        <div class="section-title">高元音 <small>High Vowels</small></div>
+                        <div class="phonetic-grid">
+                            <div class="phonetic-card" data-code="47-i.mp3" data-symbol="/iː/"
+                                data-description="长元音，高前不圆唇" data-examples="see, tea, key"
+                                style="--grad-start: #E0F2FE; --grad-end: #BAE6FD;">
+                                <div class="card-main">
+                                    <div class="phonetic-symbol">/iː/</div>
+                                    <div class="phonetic-example">s<u>ee</u></div>
+                                    <div class="speaker-icon"></div>
+                                    <div class="speaker-waves">
+                                        <div class="wave"></div>
+                                    </div>
+                                </div>
+                                <div class="details-section">
+                                    <button class="details-btn">详情</button>
+                                </div>
+                            </div>
+                            <div class="phonetic-card" data-code="2-ɪ.mp3" data-symbol="/ɪ/"
+                                data-description="短元音，次高前不圆唇" data-examples="sit, big, fish"
+                                style="--grad-start: #E0F2FE; --grad-end: #BAE6FD;">
+                                <div class="card-main">
+                                    <div class="phonetic-symbol">/ɪ/</div>
+                                    <div class="phonetic-example">s<u>i</u>t</div>
+                                    <div class="speaker-icon"></div>
+                                    <div class="speaker-waves">
+                                        <div class="wave"></div>
+                                    </div>
+                                </div>
+                                <div class="details-section">
+                                    <button class="details-btn">详情</button>
+                                </div>
+                            </div>
+                            <div class="phonetic-card" data-code="8-uː.mp3" data-symbol="/uː/"
+                                data-description="长元音，高后圆唇" data-examples="too, blue, food"
+                                style="--grad-start: #E0F2FE; --grad-end: #BAE6FD;">
+                                <div class="card-main">
+                                    <div class="phonetic-symbol">/uː/</div>
+                                    <div class="phonetic-example">t<u>oo</u></div>
+                                    <div class="speaker-icon"></div>
+                                    <div class="speaker-waves">
+                                        <div class="wave"></div>
+                                    </div>
+                                </div>
+                                <div class="details-section">
+                                    <button class="details-btn">详情</button>
+                                </div>
+                            </div>
+                            <div class="phonetic-card" data-code="9-ʊ.mp3" data-symbol="/ʊ/"
+                                data-description="短元音，次高后圆唇" data-examples="put, good, look"
+                                style="--grad-start: #E0F2FE; --grad-end: #BAE6FD;">
+                                <div class="card-main">
+                                    <div class="phonetic-symbol">/ʊ/</div>
+                                    <div class="phonetic-example">p<u>u</u>t</div>
+                                    <div class="speaker-icon"></div>
+                                    <div class="speaker-waves">
+                                        <div class="wave"></div>
+                                    </div>
+                                </div>
+                                <div class="details-section">
+                                    <button class="details-btn">详情</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section level-3">
+                        <div class="section-title">中元音 <small>Middle Vowels</small></div>
+                        <div class="phonetic-grid">
+                            <div class="phonetic-card" data-code="10-e.mp3" data-symbol="/e/" data-description="中前不圆唇元音"
+                                data-examples="bed, red, set" style="--grad-start: #F3E8FF; --grad-end: #E9D5FF;">
+                                <div class="card-main">
+                                    <div class="phonetic-symbol">/e/</div>
+                                    <div class="phonetic-example">b<u>e</u>d</div>
+                                    <div class="speaker-icon"></div>
+                                    <div class="speaker-waves">
+                                        <div class="wave"></div>
+                                    </div>
+                                </div>
+                                <div class="details-section">
+                                    <button class="details-btn">详情</button>
+                                </div>
+                            </div>
+                            <div class="phonetic-card" data-code="11-ɜː.mp3" data-symbol="/ɜː/"
+                                data-description="长元音，中央不圆唇" data-examples="bird, work, learn"
+                                style="--grad-start: #F3E8FF; --grad-end: #E9D5FF;">
+                                <div class="card-main">
+                                    <div class="phonetic-symbol">/ɜː/</div>
+                                    <div class="phonetic-example">b<u>ir</u>d</div>
+                                    <div class="speaker-icon"></div>
+                                    <div class="speaker-waves">
+                                        <div class="wave"></div>
+                                    </div>
+                                </div>
+                                <div class="details-section">
+                                    <button class="details-btn">详情</button>
+                                </div>
+                            </div>
+                            <div class="phonetic-card" data-code="12-ə.mp3" data-symbol="/ə/"
+                                data-description="中性元音，弱读音" data-examples="about, banana, China"
+                                style="--grad-start: #F3E8FF; --grad-end: #E9D5FF;">
+                                <div class="card-main">
+                                    <div class="phonetic-symbol">/ə/</div>
+                                    <div class="phonetic-example"><u>a</u>bout</div>
+                                    <div class="speaker-icon"></div>
+                                    <div class="speaker-waves">
+                                        <div class="wave"></div>
+                                    </div>
+                                </div>
+                                <div class="details-section">
+                                    <button class="details-btn">详情</button>
+                                </div>
+                            </div>
+                            <div class="phonetic-card" data-code="5-ʌ.mp3" data-symbol="/ʌ/"
+                                data-description="短元音，中后不圆唇" data-examples="cup, but, love"
+                                style="--grad-start: #F3E8FF; --grad-end: #E9D5FF;">
+                                <div class="card-main">
+                                    <div class="phonetic-symbol">/ʌ/</div>
+                                    <div class="phonetic-example">c<u>u</u>p</div>
+                                    <div class="speaker-icon"></div>
+                                    <div class="speaker-waves">
+                                        <div class="wave"></div>
+                                    </div>
+                                </div>
+                                <div class="details-section">
+                                    <button class="details-btn">详情</button>
+                                </div>
+                            </div>
+                            <div class="phonetic-card" data-code="6-ɔː.mp3" data-symbol="/ɔː/"
+                                data-description="长元音，中低后圆唇" data-examples="saw, law, door"
+                                style="--grad-start: #F3E8FF; --grad-end: #E9D5FF;">
+                                <div class="card-main">
+                                    <div class="phonetic-symbol">/ɔː/</div>
+                                    <div class="phonetic-example">s<u>aw</u></div>
+                                    <div class="speaker-icon"></div>
+                                    <div class="speaker-waves">
+                                        <div class="wave"></div>
+                                    </div>
+                                </div>
+                                <div class="details-section">
+                                    <button class="details-btn">详情</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section level-3">
+                        <div class="section-title">低元音 <small>Low Vowels</small></div>
+                        <div class="phonetic-grid">
+                            <div class="phonetic-card" data-code="4-æ.mp3" data-symbol="/æ/" data-description="低前不圆唇元音"
+                                data-examples="cat, bad, man" style="--grad-start: #FFE4E6; --grad-end: #FECDD3;">
+                                <div class="card-main">
+                                    <div class="phonetic-symbol">/æ/</div>
+                                    <div class="phonetic-example">c<u>a</u>t</div>
+                                    <div class="speaker-icon"></div>
+                                    <div class="speaker-waves">
+                                        <div class="wave"></div>
+                                    </div>
+                                </div>
+                                <div class="details-section">
+                                    <button class="details-btn">详情</button>
+                                </div>
+                            </div>
+                            <div class="phonetic-card" data-code="3-ɑː.mp3" data-symbol="/ɑː/"
+                                data-description="长元音，低后不圆唇" data-examples="car, far, park"
+                                style="--grad-start: #FFE4E6; --grad-end: #FECDD3;">
+                                <div class="card-main">
+                                    <div class="phonetic-symbol">/ɑː/</div>
+                                    <div class="phonetic-example">c<u>ar</u></div>
+                                    <div class="speaker-icon"></div>
+                                    <div class="speaker-waves">
+                                        <div class="wave"></div>
+                                    </div>
+                                </div>
+                                <div class="details-section">
+                                    <button class="details-btn">详情</button>
+                                </div>
+                            </div>
+                            <div class="phonetic-card" data-code="7-ɒ.mp3" data-symbol="/ɒ/" data-description="短元音，低后圆唇"
+                                data-examples="hot, dog, box" style="--grad-start: #FFE4E6; --grad-end: #FECDD3;">
+                                <div class="card-main">
+                                    <div class="phonetic-symbol">/ɒ/</div>
+                                    <div class="phonetic-example">h<u>o</u>t</div>
+                                    <div class="speaker-icon"></div>
+                                    <div class="speaker-waves">
+                                        <div class="wave"></div>
+                                    </div>
+                                </div>
+                                <div class="details-section">
+                                    <button class="details-btn">详情</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section level-2">
+                    <div class="section-title">双元音 <small>Diphthongs</small></div>
+                    <div class="phonetic-grid">
+                        <div class="phonetic-card" data-code="13-eɪ.mp3" data-symbol="/eɪ/" data-description="从/e/滑向/ɪ/"
+                            data-examples="day, say, make" style="--grad-start: #DCFCE7; --grad-end: #BBF7D0;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/eɪ/</div>
+                                <div class="phonetic-example">d<u>ay</u></div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="14-aɪ.mp3" data-symbol="/aɪ/" data-description="从/a/滑向/ɪ/"
+                            data-examples="my, fly, time" style="--grad-start: #DCFCE7; --grad-end: #BBF7D0;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/aɪ/</div>
+                                <div class="phonetic-example">m<u>y</u></div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="15-ɔɪ.mp3" data-symbol="/ɔɪ/" data-description="从/ɔ/滑向/ɪ/"
+                            data-examples="boy, toy, voice" style="--grad-start: #DCFCE7; --grad-end: #BBF7D0;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/ɔɪ/</div>
+                                <div class="phonetic-example">b<u>oy</u></div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="17-aʊ.mp3" data-symbol="/aʊ/" data-description="从/a/滑向/ʊ/"
+                            data-examples="now, how, house" style="--grad-start: #DCFCE7; --grad-end: #BBF7D0;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/aʊ/</div>
+                                <div class="phonetic-example">n<u>ow</u></div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="16-əʊ.mp3" data-symbol="/əʊ/" data-description="从/ə/滑向/ʊ/"
+                            data-examples="go, show, home" style="--grad-start: #DCFCE7; --grad-end: #BBF7D0;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/əʊ/</div>
+                                <div class="phonetic-example">g<u>o</u></div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="18-ɪə.mp3" data-symbol="/ɪə/" data-description="从/ɪ/滑向/ə/"
+                            data-examples="ear, here, beer" style="--grad-start: #DCFCE7; --grad-end: #BBF7D0;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/ɪə/</div>
+                                <div class="phonetic-example"><u>ear</u></div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="19-eə.mp3" data-symbol="/eə/" data-description="从/e/滑向/ə/"
+                            data-examples="air, care, there" style="--grad-start: #DCFCE7; --grad-end: #BBF7D0;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/eə/</div>
+                                <div class="phonetic-example"><u>air</u></div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="20-ʊə.mp3" data-symbol="/ʊə/" data-description="从/ʊ/滑向/ə/"
+                            data-examples="sure, poor, tour" style="--grad-start: #DCFCE7; --grad-end: #BBF7D0;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/ʊə/</div>
+                                <div class="phonetic-example">s<u>ure</u></div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section level-1">
+                <div class="section-title">辅音(28个) <small>Consonants</small></div>
+                <div class="section level-2">
+                    <div class="section-title">塞音 <small>Plosives</small></div>
+                    <div class="phonetic-grid">
+                        <div class="phonetic-card" data-code="23-p.mp3" data-symbol="/p/" data-description="清双唇爆破音"
+                            data-examples="pen, cup, happy" style="--grad-start: #FFEDD5; --grad-end: #FED7AA;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/p/</div>
+                                <div class="phonetic-example"><u>p</u>en</div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="24-b.mp3" data-symbol="/b/" data-description="浊双唇爆破音"
+                            data-examples="bag, job, baby" style="--grad-start: #FFEDD5; --grad-end: #FED7AA;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/b/</div>
+                                <div class="phonetic-example"><u>b</u>ag</div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="25-t.mp3" data-symbol="/t/" data-description="清齿龈爆破音"
+                            data-examples="tea, cat, better" style="--grad-start: #FFEDD5; --grad-end: #FED7AA;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/t/</div>
+                                <div class="phonetic-example"><u>t</u>ea</div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="26-d.mp3" data-symbol="/d/" data-description="浊齿龈爆破音"
+                            data-examples="dog, bed, ladder" style="--grad-start: #FFEDD5; --grad-end: #FED7AA;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/d/</div>
+                                <div class="phonetic-example"><u>d</u>og</div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="27-k.mp3" data-symbol="/k/" data-description="清软腭爆破音"
+                            data-examples="key, back, school" style="--grad-start: #FFEDD5; --grad-end: #FED7AA;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/k/</div>
+                                <div class="phonetic-example"><u>k</u>ey</div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="28-g.mp3" data-symbol="/g/" data-description="浊软腭爆破音"
+                            data-examples="go, big, finger" style="--grad-start: #FFEDD5; --grad-end: #FED7AA;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/g/</div>
+                                <div class="phonetic-example"><u>g</u>o</div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section level-2">
+                    <div class="section-title">鼻音 <small>Nasals</small></div>
+                    <div class="phonetic-grid">
+                        <div class="phonetic-card" data-code="39-m.mp3" data-symbol="/m/" data-description="双唇鼻音"
+                            data-examples="man, time, summer" style="--grad-start: #E0E7FF; --grad-end: #C7D2FE;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/m/</div>
+                                <div class="phonetic-example"><u>m</u>an</div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="40-n.mp3" data-symbol="/n/" data-description="齿龈鼻音"
+                            data-examples="no, sun, winner" style="--grad-start: #E0E7FF; --grad-end: #C7D2FE;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/n/</div>
+                                <div class="phonetic-example"><u>n</u>o</div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="41-ŋ.mp3" data-symbol="/ŋ/" data-description="软腭鼻音"
+                            data-examples="sing, think, finger" style="--grad-start: #E0E7FF; --grad-end: #C7D2FE;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/ŋ/</div>
+                                <div class="phonetic-example">si<u>ng</u></div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section level-2">
+                    <div class="section-title">擦音 <small>Fricatives</small></div>
+                    <div class="phonetic-grid">
+                        <div class="phonetic-card" data-code="29-f.mp3" data-symbol="/f/" data-description="清唇齿擦音"
+                            data-examples="fish, leaf, phone" style="--grad-start: #FEF3C7; --grad-end: #FDE68A;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/f/</div>
+                                <div class="phonetic-example"><u>f</u>ish</div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="30-v.mp3" data-symbol="/v/" data-description="浊唇齿擦音"
+                            data-examples="voice, love, never" style="--grad-start: #FEF3C7; --grad-end: #FDE68A;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/v/</div>
+                                <div class="phonetic-example"><u>v</u>oice</div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="31-θ.mp3" data-symbol="/θ/" data-description="清齿擦音"
+                            data-examples="think, bath, mouth" style="--grad-start: #FEF3C7; --grad-end: #FDE68A;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/θ/</div>
+                                <div class="phonetic-example"><u>th</u>ink</div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="32-ð.mp3" data-symbol="/ð/" data-description="浊齿擦音"
+                            data-examples="this, father, breathe" style="--grad-start: #FEF3C7; --grad-end: #FDE68A;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/ð/</div>
+                                <div class="phonetic-example"><u>th</u>is</div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="33-s.mp3" data-symbol="/s/" data-description="清齿龈擦音"
+                            data-examples="sun, less, city" style="--grad-start: #FEF3C7; --grad-end: #FDE68A;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/s/</div>
+                                <div class="phonetic-example"><u>s</u>un</div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="34-z.mp3" data-symbol="/z/" data-description="浊齿龈擦音"
+                            data-examples="zoo, buzz, cheese" style="--grad-start: #FEF3C7; --grad-end: #FDE68A;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/z/</div>
+                                <div class="phonetic-example"><u>z</u>oo</div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="35-ʃ.mp3" data-symbol="/ʃ/" data-description="清齿龈后擦音"
+                            data-examples="ship, wash, nation" style="--grad-start: #FEF3C7; --grad-end: #FDE68A;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/ʃ/</div>
+                                <div class="phonetic-example"><u>sh</u>ip</div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="36-ʒ.mp3" data-symbol="/ʒ/" data-description="浊齿龈后擦音"
+                            data-examples="measure, vision, garage" style="--grad-start: #FEF3C7; --grad-end: #FDE68A;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/ʒ/</div>
+                                <div class="phonetic-example">mea<u>s</u>ure</div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="46-h.mp3" data-symbol="/h/" data-description="声门擦音"
+                            data-examples="house, behind, perhaps" style="--grad-start: #FEF3C7; --grad-end: #FDE68A;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/h/</div>
+                                <div class="phonetic-example"><u>h</u>ouse</div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section level-2">
+                    <div class="section-title">塞擦音 <small>Affricates</small></div>
+                    <div class="phonetic-grid">
+                        <div class="phonetic-card" data-code="37-tʃ.mp3" data-symbol="/tʃ/" data-description="清齿龈后塞擦音"
+                            data-examples="chair, match, nature" style="--grad-start: #FAE8FF; --grad-end: #F5D0FE;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/tʃ/</div>
+                                <div class="phonetic-example"><u>ch</u>air</div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="38-dʒ.mp3" data-symbol="/dʒ/" data-description="浊齿龈后塞擦音"
+                            data-examples="job, bridge, age" style="--grad-start: #FAE8FF; --grad-end: #F5D0FE;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/dʒ/</div>
+                                <div class="phonetic-example"><u>j</u>ob</div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section level-2">
+                    <div class="section-title">近音 <small>Approximants</small></div>
+                    <div class="phonetic-grid">
+                        <div class="phonetic-card" data-code="44-w.mp3" data-symbol="/w/" data-description="软腭近音"
+                            data-examples="we, one, quick" style="--grad-start: #ECFCCB; --grad-end: #D9F99D;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/w/</div>
+                                <div class="phonetic-example"><u>w</u>e</div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="43-r.mp3" data-symbol="/r/" data-description="齿龈近音"
+                            data-examples="red, car, try" style="--grad-start: #ECFCCB; --grad-end: #D9F99D;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/r/</div>
+                                <div class="phonetic-example"><u>r</u>ed</div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="45-j.mp3" data-symbol="/j/" data-description="硬腭近音"
+                            data-examples="yes, new, beauty" style="--grad-start: #ECFCCB; --grad-end: #D9F99D;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/j/</div>
+                                <div class="phonetic-example"><u>y</u>es</div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section level-2">
+                    <div class="section-title">边音 <small>Lateral</small></div>
+                    <div class="phonetic-grid">
+                        <div class="phonetic-card" data-code="42-l.mp3" data-symbol="/l/" data-description="齿龈边音"
+                            data-examples="love, all, play" style="--grad-start: #CCFBF1; --grad-end: #99F6E4;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/l/</div>
+                                <div class="phonetic-example"><u>l</u>ove</div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section level-2">
+                    <div class="section-title">辅音连缀 <small>Clusters</small></div>
+                    <div class="phonetic-grid">
+                        <div class="phonetic-card" data-code="47-tr.mp3" data-symbol="/tr/" data-description="清齿龈后塞擦音"
+                            data-examples="tree, country, central" style="--grad-start: #FCE7F3; --grad-end: #FBCFE8;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/tr/</div>
+                                <div class="phonetic-example"><u>tr</u>ee</div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="48-dr.mp3" data-symbol="/dr/" data-description="浊齿龈后塞擦音"
+                            data-examples="drive, hundred, children"
+                            style="--grad-start: #FCE7F3; --grad-end: #FBCFE8;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/dr/</div>
+                                <div class="phonetic-example"><u>dr</u>ive</div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="45-ts.mp3" data-symbol="/ts/" data-description="清齿龈塞擦音"
+                            data-examples="cats, sits, what&#039;s" style="--grad-start: #FCE7F3; --grad-end: #FBCFE8;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/ts/</div>
+                                <div class="phonetic-example">ca<u>ts</u></div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                        <div class="phonetic-card" data-code="46-dz.mp3" data-symbol="/dz/" data-description="浊齿龈塞擦音"
+                            data-examples="beds, roads, friends" style="--grad-start: #FCE7F3; --grad-end: #FBCFE8;">
+                            <div class="card-main">
+                                <div class="phonetic-symbol">/dz/</div>
+                                <div class="phonetic-example">be<u>ds</u></div>
+                                <div class="speaker-icon"></div>
+                                <div class="speaker-waves">
+                                    <div class="wave"></div>
+                                </div>
+                            </div>
+                            <div class="details-section">
+                                <button class="details-btn">详情</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px dashed #e2e8f0;">
+            <p style="font-size: 14px; color: #64748b; margin-bottom: 12px;">扫码体验微信小程序版，随时随地学音标</p>
+            <img src="../assets/images/wxaqrcode.png" alt="微信小程序"
+                style="width: 120px; height: 120px; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+        </div>
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-symbol" id="modalSymbol"></div>
+            <div class="modal-info">
+                <h3>发音特点</h3>
+                <p id="modalDescription"></p>
+                <h3>例词</h3>
+                <p id="modalExamples"></p>
+            </div>
+            <button class="close-btn" id="closeBtn">我知道了</button>
+        </div>
+    </div>
+
+    <script>
+        class PhoneticApp {
+            constructor() {
+                this.audio = null;
+                this.modal = document.getElementById('modal');
+                this.init();
+            }
+
+            init() {
+                this.bindEvents();
+            }
+
+            play(code, card) {
+                if (!code) return;
+                if (this.audio) { this.audio.pause(); this.audio.currentTime = 0; }
+
+                document.querySelectorAll('.phonetic-card').forEach(c => c.classList.remove('playing'));
+                card.classList.add('playing');
+
+                this.audio = new Audio(`../assets/audio/${code}`);
+                this.audio.play().catch(e => console.error(e));
+                this.audio.onended = () => card.classList.remove('playing');
+            }
+
+            show(data) {
+                document.getElementById('modalSymbol').textContent = data.symbol;
+                document.getElementById('modalDescription').textContent = data.description;
+                document.getElementById('modalExamples').textContent = data.examples;
+                this.modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+
+            bindEvents() {
+                document.querySelectorAll('.phonetic-card').forEach(card => {
+                    card.querySelector('.card-main').onclick = (e) => {
+                        e.stopPropagation();
+                        this.play(card.dataset.code, card);
+                    };
+
+                    card.querySelector('.details-btn').onclick = (e) => {
+                        e.stopPropagation();
+                        this.show({
+                            symbol: card.dataset.symbol,
+                            description: card.dataset.description,
+                            examples: card.dataset.examples
+                        });
+                    };
+                });
+
+                document.getElementById('closeBtn').onclick = () => {
+                    this.modal.style.display = 'none';
+                    document.body.style.overflow = '';
+                };
+                this.modal.onclick = (e) => {
+                    if (e.target === this.modal) document.getElementById('closeBtn').click();
+                };
+            }
+        }
+
+        window.onload = () => new PhoneticApp();
+    </script>
+</body>
+
+</html>

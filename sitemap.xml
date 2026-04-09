@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://zqluo.com/</loc>
+    <lastmod>2026-04-09</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://zqluo.com/pages/playground.html</loc>
+    <lastmod>2026-04-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zqluo.com/pages/phonetics.html</loc>
+    <lastmod>2026-04-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zqluo.com/pages/iphone.html</loc>
+    <lastmod>2026-02-26</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zqluo.com/pages/player.html</loc>
+    <lastmod>2019-07-17</lastmod>
+    <priority>0.6</priority>
+  </url>
+</urlset>

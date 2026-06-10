@@ -1,207 +1,1102 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="lang-zh">
 
 <head>
+    <meta charset="UTF-8">
     <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport"
-        content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0,viewport-fit=cover">
-    <meta name="description" content="独坐码前-ZQLUO-的个人主页，一名拥有14年经验的全栈工程师，熟悉Java、Android、iOS、Flutter、Go、Web等多种技术。">
-    <meta property="og:title" content="独坐码前-ZQLUO-">
-    <meta property="og:description" content="独坐码前-ZQLUO-的个人主页，一名拥有14年经验的全栈工程师，熟悉Java、Android、iOS、Flutter、Go、Web等多种技术。">
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
+
+    <!-- SEO Optimization -->
+    <title id="page-title">独坐码前-ZQLUO | 14年资深全栈与移动开发专家 | 架构与性能优化</title>
+    <meta id="meta-description" name="description"
+        content="独坐码前-ZQLUO 的个人官方网站。14年+全栈软件开发经验，精通 Android (Kotlin), iOS (Swift), Flutter, Java, Go, PHP。专注移动端弱网离线高并发同步优化, 医疗级低延迟多通道冗余通信, 以及 AI 辅助编程与 MCP 插件开发。">
+    <meta name="keywords"
+        content="ZQLUO,独坐码前,全栈工程师,移动开发专家,Android开发,iOS开发,Flutter离线同步,医疗无线冗余通信,Vibe Coding,FastAPI,Spring Boot,Yii,Redis高并发,Docker容器化,MCP">
+    <meta name="author" content="ZQLUO">
+    <link rel="canonical" href="https://zqluo.com/">
+    <link rel="alternate" hreflang="zh-CN" href="https://zqluo.com/?lang=zh" />
+    <link rel="alternate" hreflang="en" href="https://zqluo.com/?lang=en" />
+    <link rel="alternate" hreflang="x-default" href="https://zqluo.com/" />
+
+    <!-- Open Graph / Share Cards -->
+    <meta property="og:title" content="独坐码前-ZQLUO | 14年资深全栈与移动开发专家">
+    <meta property="og:description" content="14年全栈软件开发经验，掌握 Android、iOS、Flutter 跨平台开发及后端多语言架构，专注关键系统性能优化与技术攻坚。">
     <meta property="og:image" content="https://zqluo.com/assets/images/my.jpg">
     <meta property="og:url" content="https://zqluo.com/">
     <meta property="og:type" content="website">
-    <title>独坐码前-ZQLUO-</title>
-    <style type="text/css">
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, PingFang SC, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif;
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ZQLUO | 14+ Years Senior Full-Stack & Mobile Developer">
+    <meta name="twitter:description"
+        content="Specialized in Native Mobile (Android/iOS), Flutter, Backend systems and high-reliability wireless protocols.">
+    <meta name="twitter:image" content="https://zqluo.com/assets/images/my.jpg">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="/assets/font-awesome/css/all.min.css">
+
+    <!-- Local Fonts -->
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+
+    <!-- Schema.org JSON-LD for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ProfilePage",
+          "@id": "https://zqluo.com/#webpage",
+          "url": "https://zqluo.com/",
+          "name": "独坐码前-ZQLUO | 14年资深全栈与移动开发专家 | 架构与性能优化",
+          "description": "独坐码前-ZQLUO 的个人官方网站。拥有14年+全栈软件开发经验，专注于移动端架构与系统性能优化。",
+          "inLanguage": ["zh-CN", "en"],
+          "about": {
+            "@id": "https://zqluo.com/#person"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://zqluo.com/#person",
+          "name": "ZQLUO",
+          "alternateName": "独坐码前",
+          "jobTitle": "Senior Full-Stack & Mobile Developer",
+          "url": "https://zqluo.com/",
+          "image": "https://zqluo.com/assets/images/my.jpg",
+          "sameAs": [
+            "https://github.com/lzqwebsoft",
+            "https://blog.zqluo.com",
+            "https://x.com/lzqwebsoft",
+            "https://blog.csdn.net/lzqwebsoft"
+          ],
+          "description": "拥有14年全栈软件开发经验，技术栈覆盖前后端、移动端及小程序，擅长系统架构设计与弱网同步、无线冗余通信、高并发等核心场景优化。",
+          "knowsAbout": [
+            "Kotlin", "Android", "Swift", "iOS", "Flutter", "Java", "Go", "PHP", "Python", "FastAPI", "Docker", "Vibe Coding", "Model Context Protocol", "Redis", "MySQL", "PostgreSQL"
+          ],
+          "knowsLanguage": [
+            {
+              "@type": "Language",
+              "name": "Chinese",
+              "alternateName": "zh"
+            },
+            {
+              "@type": "Language",
+              "name": "English",
+              "alternateName": "en"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        /* CSS Reset & Variables */
+        :root {
+            --bg-color: #f4f6f9;
+            --bg-card: rgba(255, 255, 255, 0.75);
+            --border-color: rgba(255, 82, 119, 0.15);
+            --border-hover: rgba(45, 52, 70, 0.25);
+            --primary: #ff5277;
+            /* Rose/pink from original Blog button */
+            --primary-glow: rgba(255, 82, 119, 0.25);
+            --secondary: #2d3446;
+            /* Dark slate from original GitHub button */
+            --secondary-glow: rgba(45, 52, 70, 0.25);
+            --tertiary: #ffcc33;
+            /* Yellow from original Playground button */
+            --text-main: #222222;
+            /* Original main text color */
+            --text-muted: #556677;
+            /* Original footer/muted color */
+            --font-inter: 'Inter', 'Noto Sans SC', sans-serif;
+            --font-tech: 'Orbitron', 'Fira Code', sans-serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .page-background {
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-inter);
+            font-size: 16.5px;
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+
+        /* Multilingual Switching mechanism */
+        html.lang-zh .multilingual.en {
+            display: none !important;
+        }
+
+        html.lang-en .multilingual.zh {
+            display: none !important;
+        }
+
+        /* Tech canvas particles */
+        #canvas-container {
             position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
             overflow: hidden;
+            background: radial-gradient(circle at 50% 50%, #ffffff 0%, #eef2f6 100%);
+        }
+
+        /* Cyberpunk Grid Overlay */
+        #canvas-container::after {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
+            background-image:
+                linear-gradient(rgba(45, 52, 70, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(45, 52, 70, 0.015) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
         }
 
-        .container {
-            text-align: center;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            border-radius: 6px;
-            max-width: 1050px;
-            padding-top: 80px;
-            margin: 80px auto 0;
-            background-image: url("/assets/images/1.jpg");
-            box-shadow: 0 0 11px 3px rgba(0, 0, 0, 0.15);
-            padding: 80px 16px 30px;
+        /* Glassmorphism utility */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+            transition: var(--transition);
         }
 
-        @media(max-width: 960px) {
-            .container {
-                margin-top: 16px;
-            }
+        .glass-card:hover {
+            border-color: var(--border-hover);
+            box-shadow: 0 12px 40px 0 rgba(255, 82, 119, 0.1);
+            transform: translateY(-2px);
         }
 
-        .container .header {
-            width: 160px;
-            height: 160px;
+        /* Glowing texts */
+        .glow-text-cyan {
+            color: var(--primary);
+        }
+
+        /* Container Layout */
+        .wrapper {
+            max-width: 1200px;
             margin: 0 auto;
-            margin-bottom: 25px;
-            background: #fff;
-            border-radius: 50%;
+            padding: 0 24px;
         }
 
-        .container .header img {
+        /* Navigation Bar */
+        header.navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(45, 52, 70, 0.08);
+        }
+
+        header.navbar .wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        header.navbar .logo {
+            font-family: var(--font-tech);
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--secondary);
+        }
+
+        header.navbar .logo::before {
+            content: '';
             display: inline-block;
-            max-width: 100%;
-            height: auto;
-            border: 5px solid rgba(31, 53, 67, 0.10);
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
             border-radius: 50%;
+            box-shadow: 0 0 8px var(--primary);
+            animation: pulse 2s infinite;
         }
 
-        .container .author h1 {
-            font-size: 24px;
-            font-weight: 500;
-            color: #222;
-            margin: 0;
+        header.navbar nav {
+            display: flex;
+            gap: 24px;
+            align-items: center;
         }
 
-        .container .author .designation {
-            font-size: 18px;
-            margin-bottom: 25px;
-            color: #222;
+        header.navbar nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            padding: 6px 0;
         }
 
-        .container .author .designation .typed-cursor {
-            border-right: .15em solid #222;
-            animation:
-                typing 3.5s steps(40, end),
-                blink-caret .75s step-end infinite;
+        header.navbar nav a:hover,
+        header.navbar nav a.active {
+            color: var(--primary);
         }
 
-        /* FROM https://css-tricks.com/snippets/css/typewriter-effect/ */
-        @keyframes typing {
-            from {
-                width: 0
-            }
-
-            to {
-                width: 100%
-            }
+        header.navbar nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+            transform: scaleX(0);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: bottom right;
         }
 
-        @keyframes blink-caret {
-
-            from,
-            to {
-                border-color: transparent
-            }
-
-            50% {
-                border-color: #222;
-            }
+        header.navbar nav a:hover::after,
+        header.navbar nav a.active::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
         }
 
-        .container .text {
-            font-size: 18px;
+        .lang-toggle-btn {
+            background: rgba(255, 82, 119, 0.08);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-family: var(--font-tech);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .lang-toggle-btn:hover {
+            background: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 0 12px var(--primary-glow);
+        }
+
+        /* Hero Section */
+        section.hero {
+            padding: 110px 0 50px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .hero-badge {
+            align-self: flex-start;
+            background: rgba(255, 82, 119, 0.08);
+            border: 1px solid var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-family: var(--font-tech);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+
+        .hero-left h1 {
+            font-family: var(--font-tech);
+            font-size: 56px;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, var(--secondary) 20%, var(--primary) 60%, var(--tertiary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 8px rgba(255, 82, 119, 0.1));
+        }
+
+        .hero-subtitle {
+            font-size: 22px;
+            color: var(--text-main);
+            min-height: 36px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .typed-cursor {
+            width: 3px;
+            height: 22px;
+            background-color: var(--primary);
+            display: inline-block;
+            animation: blink 0.8s infinite;
+        }
+
+        .hero-desc {
+            color: var(--text-muted);
+            font-size: 17.5px;
+            line-height: 1.8;
             max-width: 600px;
-            margin: 0 auto;
-            color: #222;
         }
 
-        .container .link-btn {
-            display: block;
-            overflow: hidden;
-            padding: 10px 0;
+        .hero-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 10px;
         }
 
-        .container .theme-btn {
-            margin: 7px 10px;
-            min-width: 70px;
-            transition: all 0.3s;
-        }
-
-        .container .link-btn a {
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
             text-decoration: none;
             cursor: pointer;
-            color: #fc6183;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 4px 15px var(--primary-glow);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #ff3b63;
+            box-shadow: 0 6px 25px rgba(255, 82, 119, 0.45);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            border: 1px solid var(--secondary);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(45, 52, 70, 0.15);
+        }
+
+        .btn-secondary:hover {
+            background: #1e2430;
+            border-color: #1e2430;
+            box-shadow: 0 6px 25px rgba(45, 52, 70, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-tertiary {
+            background: var(--tertiary);
+            border: 1px solid var(--tertiary);
+            color: var(--secondary);
+            box-shadow: 0 4px 15px rgba(255, 204, 51, 0.15);
+        }
+
+        .btn-tertiary:hover {
+            background: #ffc41a;
+            border-color: #ffc41a;
+            box-shadow: 0 6px 25px rgba(255, 204, 51, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Right Avatar Frame */
+        .hero-right {
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .avatar-container {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            padding: 8px;
+            background: linear-gradient(45deg, var(--secondary), var(--primary), var(--tertiary));
+            box-shadow: 0 0 30px rgba(255, 82, 119, 0.15);
+            position: relative;
+        }
+
+        .avatar-container::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 1px dashed var(--primary);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--bg-color);
+        }
+
+        /* Metric Dashboard Panels */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin: 30px 0;
+        }
+
+        .metric-card {
+            padding: 30px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-val {
+            font-family: var(--font-tech);
+            font-size: 44px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .metric-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* Section Header Layout */
+        .section-title {
+            text-align: center;
+            margin-bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title h2 {
+            font-family: var(--font-tech);
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+            margin-top: 12px;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-top: 6px;
+        }
+
+        /* Profile details / traits section */
+        .profile-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .profile-info-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .profile-info-list li {
+            font-size: 17.5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px dashed rgba(0, 0, 0, 0.05);
+            padding-bottom: 12px;
+        }
+
+        .profile-info-list li .label {
+            color: var(--text-muted);
+            width: 140px;
+            flex-shrink: 0;
+            font-family: var(--font-tech);
+            font-size: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .profile-info-list li .value {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .profile-info-list li .value a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition);
+            border-bottom: 1px dashed transparent;
+        }
+
+        .profile-info-list li .value a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .traits-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        .trait-item {
+            padding: 16px 20px;
+            border-left: 4px solid var(--primary);
+            border-radius: 0 12px 12px 0;
+        }
+
+        .trait-item h3 {
+            font-size: 16.5px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .trait-item p {
+            font-size: 14.5px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Core Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .skill-card {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .skill-card-icon {
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        .skill-card h3 {
+            font-family: var(--font-tech);
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            padding-bottom: 8px;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-badge {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 13.5px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .skill-badge:hover {
+            background: rgba(255, 82, 119, 0.08);
+            border-color: var(--primary);
+            color: var(--primary);
+            box-shadow: 0 0 8px rgba(255, 82, 119, 0.15);
+        }
+
+        /* Technical Breakthroughs & Optimizations */
+        .optimizations-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 900px) {
+            .optimizations-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .opt-card {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .opt-tag {
+            align-self: flex-start;
+            font-family: var(--font-tech);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tag-arch {
+            background: rgba(255, 82, 119, 0.08);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .tag-comms {
+            background: rgba(45, 52, 70, 0.08);
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
+        }
+
+        .tag-sys {
+            background: rgba(255, 179, 0, 0.08);
+            border: 1px solid #ffb300;
+            color: #d97706;
+        }
+
+        .tag-ai {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid #10b981;
+            color: #059669;
+        }
+
+        .opt-card h3 {
+            font-size: 21.5px;
+            font-weight: 700;
+            line-height: 1.4;
+            color: var(--text-main);
+        }
+
+        .opt-details {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .opt-step {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 12px;
+            font-size: 15px;
+        }
+
+        @media (max-width: 576px) {
+            .opt-step {
+                grid-template-columns: 1fr;
+                gap: 4px;
+            }
+
+            .opt-step .label {
+                margin-top: 0;
+                margin-bottom: 2px;
+            }
+        }
+
+        .opt-step .label {
+            font-weight: bold;
+            font-family: var(--font-tech);
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .opt-step.challenge .label {
+            color: #ef4444;
+        }
+
+        .opt-step.solution .label {
+            color: #10b981;
+        }
+
+        .opt-step.challenge p {
+            color: var(--text-muted);
+        }
+
+        .opt-step.solution p {
+            color: var(--text-main);
+        }
+
+        /* Work Experience Section */
+        .timeline-filter {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            color: var(--text-muted);
+            padding: 8px 20px;
+            border-radius: 24px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: rgba(255, 82, 119, 0.08);
+            border-color: var(--primary);
+            color: var(--primary);
+            box-shadow: 0 0 10px rgba(255, 82, 119, 0.15);
+        }
+
+        .timeline {
+            position: relative;
+            margin: 0 auto 40px;
+            padding-left: 20px;
+            border-left: 2px solid rgba(45, 52, 70, 0.06);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -27px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 8px var(--primary-glow);
+            z-index: 2;
+        }
+
+        .timeline-item.company-node::before {
+            border-color: var(--secondary);
+            box-shadow: 0 0 8px var(--secondary-glow);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .timeline-header h3 {
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .timeline-header h3 span.role {
+            font-size: 14px;
+            color: var(--primary);
+            font-weight: 600;
+            margin-left: 12px;
+        }
+
+        .timeline-date {
+            font-family: var(--font-tech);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .timeline-body {
+            color: var(--text-muted);
+            font-size: 15.5px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .timeline-body p {
+            line-height: 1.7;
+        }
+
+        .timeline-projects {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-top: 10px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(45, 52, 70, 0.08);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            background: rgba(255, 255, 255, 0.95);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 82, 119, 0.1);
+        }
+
+        .project-card h4 {
+            font-size: 16.5px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .project-card h4 span.tag {
+            font-family: var(--font-tech);
+            font-size: 11px;
+            color: var(--primary);
+            border: 1px solid rgba(255, 82, 119, 0.25);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .project-card p {
+            font-size: 14.5px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Open Source & Works */
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .work-card {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .work-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .work-header h3 {
+            font-family: var(--font-tech);
+            font-size: 18.5px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .work-header .stars {
+            font-family: var(--font-tech);
+            font-size: 12px;
+            color: #ff9900;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .work-card p {
+            font-size: 14.5px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .work-footer {
+            font-family: var(--font-tech);
+            font-size: 11px;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Technical Articles List */
+        .articles-list {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .article-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            transition: var(--transition);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .article-item:hover {
+            background: rgba(255, 82, 119, 0.05);
+            border-color: rgba(255, 82, 119, 0.2);
+            transform: translateX(5px);
+        }
+
+        .article-item h4 {
+            font-size: 16.5px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .article-item span.category {
+            font-family: var(--font-tech);
+            font-size: 11px;
+            color: var(--text-muted);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* Contact Terminal Block */
+        .terminal-block {
+            margin-bottom: 60px;
+            overflow: hidden;
+            font-family: 'Fira Code', monospace;
+            font-size: 14.5px;
+        }
+
+        .terminal-header-bar {
+            background: #111827;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px 16px 0 0;
+        }
+
+        .terminal-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .terminal-buttons span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
             display: inline-block;
         }
 
-        .container .link-btn .btn-style-one {
-            font-size: 14px;
-            line-height: 22px;
-            text-align: center;
-            padding: 14px 30px;
+        .btn-red {
+            background: #ef4444;
+        }
+
+        .btn-yellow {
+            background: #f59e0b;
+        }
+
+        .btn-green {
+            background: #10b981;
+        }
+
+        .terminal-title {
+            color: var(--text-muted);
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .terminal-body {
+            background: rgba(8, 12, 21, 0.95);
+            padding: 24px;
+            border-radius: 0 0 16px 16px;
+            line-height: 1.8;
+            color: #38bdf8;
+            height: 220px;
+            overflow-y: auto;
+        }
+
+        .terminal-line {
+            margin-bottom: 8px;
+        }
+
+        .terminal-cmd {
             color: #ffffff;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: .5px;
-            border-radius: 40px;
-            background: #2d3446;
-            /* box-shadow: 0 4px 10px rgba(45, 52, 70, 0.2); */
         }
 
-        .container .link-btn .btn-style-one:hover {
-            background: #1e2430;
-            box-shadow: 0 6px 15px rgba(45, 52, 70, 0.35);
-            transform: translateY(-2px);
+        .terminal-success {
+            color: #10b981;
         }
 
-        .container .link-btn .btn-style-two {
-            font-size: 14px;
-            line-height: 22px;
-            text-align: center;
-            padding: 14px 30px;
-            color: #ffffff;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: .5px;
-            border-radius: 40px;
-            background: #ff5277;
-            /* box-shadow: 0 4px 10px rgba(255, 82, 119, 0.2); */
-        }
-
-        .container .link-btn .btn-style-two:hover {
-            background: #ff3b63;
-            box-shadow: 0 6px 15px rgba(255, 82, 119, 0.35);
-            transform: translateY(-2px);
-        }
-
-        .container .link-btn .btn-style-three {
-            font-size: 14px;
-            line-height: 22px;
-            text-align: center;
-            padding: 14px 30px;
-            color: #2d3446;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .5px;
-            border-radius: 40px;
-            background: #ffcc33;
-            /* box-shadow: 0 4px 10px rgba(255, 204, 51, 0.2); */
-        }
-
-        .container .link-btn .btn-style-three:hover {
-            background: #ffc41a;
-            box-shadow: 0 6px 15px rgba(255, 204, 51, 0.35);
-            transform: translateY(-2px);
-        }
-
+        /* Preserve Original Footer CSS Structure exactly & Adapt for design */
         .footer {
             text-align: center;
-            padding: 40px 20px 20px;
-            color: #666;
-            font-size: 14px;
+            padding: 60px 20px 40px;
+            color: var(--text-muted);
+            font-size: 13px;
             width: 100%;
             box-sizing: border-box;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .footer-beian {
@@ -209,69 +1104,1005 @@
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 10px;
+            gap: 20px;
+            margin-bottom: 15px;
         }
 
         .footer-beian a {
             display: inline-flex;
             align-items: center;
-            color: #666;
+            color: var(--text-muted);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: var(--transition);
         }
 
         .footer-beian a img {
             width: 16px;
             height: 16px;
-            margin-right: 5px;
+            margin-right: 6px;
             vertical-align: middle;
         }
 
         .footer-beian a:hover {
-            color: #fc6183;
+            color: var(--primary);
             text-decoration: underline;
         }
 
         .footer-copy {
             margin: 0;
-            opacity: 0.8;
+            opacity: 0.7;
+        }
+
+        /* Animations */
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            section.hero {
+                grid-template-columns: 1fr;
+                padding-top: 120px !important;
+                padding-bottom: 40px;
+                gap: 30px;
+            }
+
+            .hero-right {
+                order: -1;
+                margin-bottom: 10px;
+            }
+
+            .avatar-container {
+                width: 180px;
+                height: 180px;
+            }
+
+            .hero-badge {
+                align-self: center;
+            }
+
+            .hero-left h1 {
+                font-size: 32px;
+                text-align: center;
+            }
+
+            .hero-subtitle {
+                font-size: 17px;
+                justify-content: center;
+            }
+
+            .hero-desc {
+                font-size: 14.5px;
+                text-align: center;
+            }
+
+            .hero-links {
+                justify-content: center;
+                gap: 12px;
+            }
+
+            .btn {
+                padding: 10px 22px;
+                font-size: 13px;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                margin: 30px 0;
+            }
+
+            .profile-container {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                margin-bottom: 50px;
+            }
+
+            .profile-container .glass-card {
+                padding: 20px !important;
+            }
+
+            .profile-info-list li {
+                flex-wrap: wrap;
+                align-items: flex-start;
+                gap: 6px 12px;
+            }
+
+            .profile-info-list li .label {
+                width: auto;
+                flex-grow: 1;
+            }
+
+            .profile-info-list li .value {
+                width: 100%;
+                margin-left: 32px;
+                word-break: break-all;
+            }
+
+            /* Scrollable Mobile Menu instead of hiding */
+            header.navbar .wrapper {
+                padding: 0 12px;
+            }
+
+            header.navbar .logo {
+                font-size: 18px;
+                letter-spacing: 1px;
+            }
+
+            header.navbar nav {
+                display: flex;
+                gap: 12px;
+                overflow-x: auto;
+                max-width: 55%;
+                white-space: nowrap;
+                padding: 4px 0;
+                scroll-behavior: smooth;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            header.navbar nav::-webkit-scrollbar {
+                display: none;
+            }
+
+            header.navbar nav a {
+                font-size: 12px;
+                font-weight: 600;
+            }
+
+            .lang-toggle-btn {
+                padding: 4px 10px;
+                font-size: 11px;
+            }
+
+            section {
+                padding: 40px 0 !important;
+            }
+
+            .section-title h2 {
+                font-size: 28px;
+            }
+
+            .timeline {
+                margin-bottom: 50px;
+            }
+        }
+
+        /* Floating Rocket Back-To-Top Button */
+        .back-to-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            color: var(--primary);
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1000;
+            box-shadow: 0 4px 20px var(--primary-glow);
+            transition: opacity 0.3s var(--transition), transform 0.3s var(--transition), background-color 0.3s, border-color 0.3s, color 0.3s;
+        }
+
+        .back-to-top-btn.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .back-to-top-btn:hover {
+            color: #ffffff;
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255, 82, 119, 0.4);
+        }
+
+        .back-to-top-btn:active {
+            transform: translateY(-2px) scale(0.95);
+        }
+
+        .back-to-top-btn i {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        /* Rocket Launch Animation */
+        @keyframes rocket-launch {
+            0% {
+                transform: translateY(0) scale(1);
+            }
+
+            15% {
+                transform: translateY(8px) scale(0.9);
+                /* Compress */
+            }
+
+            35% {
+                transform: translateY(-25px) scale(1.1);
+                /* Ignition */
+            }
+
+            100% {
+                transform: translateY(-120vh) scale(1.2);
+                /* Shoot off screen */
+                opacity: 0;
+            }
+        }
+
+        .back-to-top-btn.launching {
+            animation: rocket-launch 0.9s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards;
+            pointer-events: none;
+        }
+
+        /* Prevent layout breaking or scaling issues on mobile */
+        @media (max-width: 576px) {
+            .back-to-top-btn {
+                bottom: 20px;
+                right: 20px;
+                width: 44px;
+                height: 44px;
+                font-size: 18px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="page-background">
+    <!-- Starry background canvas -->
+    <div id="canvas-container">
         <canvas id="canvas"></canvas>
     </div>
-    <div class="container">
-        <div class="header">
-            <img src="/assets/images/my.jpg" alt="-ZQLUO-的头像" />
+
+    <!-- Header Navigation -->
+    <header class="navbar">
+        <div class="wrapper">
+            <a href="#" class="logo glow-text-cyan">ZQLUO</a>
+            <nav>
+                <a href="#about" class="multilingual zh">关于我</a>
+                <a href="#about" class="multilingual en">About</a>
+                <a href="#skills" class="multilingual zh">专业特长</a>
+                <a href="#skills" class="multilingual en">Skills</a>
+                <a href="#optimizations" class="multilingual zh">技术攻坚</a>
+                <a href="#optimizations" class="multilingual en">Optimizations</a>
+                <a href="#experience" class="multilingual zh">项目轨迹</a>
+                <a href="#experience" class="multilingual en">Timeline</a>
+                <a href="#works" class="multilingual zh">作品&文章</a>
+                <a href="#works" class="multilingual en">Works</a>
+            </nav>
+            <button id="lang-toggle" class="lang-toggle-btn">EN</button>
         </div>
-        <div class="author">
-            <h1>独坐码前-ZQLUO-</h1>
-            <div class="designation">你好呀，我是
-                <div class="typing-title" style="display: none;">
-                    <p><strong>90后.</strong></p>
-                    <p><strong>程序员.</strong></p>
-                    <p><strong>后端开发工程师.</strong></p>
-                    <p><strong>移动开发工程师.</strong></p>
-                    <p><strong>全栈工程师.</strong></p>
+    </header>
+
+    <main class="wrapper">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-left">
+                <span class="hero-badge">VIBE CODING PRACTITIONER</span>
+                <h1>
+                    <span class="multilingual zh">独坐码前 - ZQLUO</span>
+                    <span class="multilingual en">ZQLUO</span>
+                </h1>
+                <div class="hero-subtitle">
+                    <span class="multilingual zh">你好，我是</span>
+                    <span class="multilingual en">Hello, I am</span>
+                    <span id="typed-text" class="glow-text-cyan" style="font-weight: 700;"></span>
+                    <span class="typed-cursor"></span>
                 </div>
-                <span class="typed-title"><strong>码农.</strong></span>
+                <p class="hero-desc">
+                    <span
+                        class="multilingual zh">拥有14年全栈软件开发经验，技术栈覆盖前后端、移动端及小程序，具备从0到1独立交付产品的架构与开发实力。持续探索AI协同编程，精通MCP生态及容器化云原生部署。</span>
+                    <span class="multilingual en">14+ years of full-stack developer experience. Specialized in native
+                        iOS/Android, cross-platform Flutter/Uni-app, and backend systems. Pioneering in AI-assisted
+                        developer workflows and MCP tools.</span>
+                </p>
+                <div class="hero-links">
+                    <a href="https://blog.zqluo.com" target="_blank" class="btn btn-primary">
+                        <i class="fa-solid fa-book-open" style="margin-right: 8px;"></i>
+                        <span class="multilingual zh">个人博客</span>
+                        <span class="multilingual en">Read Blog</span>
+                    </a>
+                    <a href="https://github.com/lzqwebsoft" target="_blank" class="btn btn-secondary">
+                        <i class="fa-brands fa-github" style="margin-right: 8px;"></i>GitHub
+                    </a>
+                    <a href="/pages/playground.html" class="btn btn-tertiary">
+                        <i class="fa-solid fa-flask" style="margin-right: 8px;"></i>Playground
+                    </a>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="avatar-container">
+                    <img src="/assets/images/my.jpg" alt="ZQLUO Profile Avatar">
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Dashboard -->
+        <div class="metrics-grid">
+            <div class="glass-card metric-card">
+                <div class="metric-val glow-text-cyan" id="working-years">14+</div>
+                <div class="metric-label">
+                    <span class="multilingual zh">工作年限</span>
+                    <span class="multilingual en">Years Exp</span>
+                </div>
+            </div>
+            <div class="glass-card metric-card">
+                <div class="metric-val glow-text-cyan">10+</div>
+                <div class="metric-label">
+                    <span class="multilingual zh">独立交付产品</span>
+                    <span class="multilingual en">Products Delivered</span>
+                </div>
+            </div>
+            <div class="glass-card metric-card">
+                <div class="metric-val glow-text-cyan">20+</div>
+                <div class="metric-label">
+                    <span class="multilingual zh">核心技术栈</span>
+                    <span class="multilingual en">Tech Stacks</span>
+                </div>
             </div>
         </div>
-        <div class="text">
-            从事软件开发工作<span id="working-years">14</span>年有余，标准的90后，热爱编程，兴趣广泛，
-            略通Java、Android、iOS、Flutter、Go、PHP、Python、Vue、Javascript、HTML、CSS；前后端与移动平台都有涉猎，
-            还会点Vibe coding，应该可以算是全栈工程师。
+
+        <!-- About & Traits Profile Section -->
+        <section id="about" style="padding: 40px 0;">
+            <div class="section-title">
+                <h2>
+                    <span class="multilingual zh">关于我 & 核心特质</span>
+                    <span class="multilingual en">About Me & Personal Traits</span>
+                </h2>
+                <p>
+                    <span class="multilingual zh">多维技术视角与高效工程执行力</span>
+                    <span class="multilingual en">Multi-dimensional tech vision and high execution capability</span>
+                </p>
+            </div>
+            <div class="profile-container">
+                <div class="glass-card" style="padding: 30px;">
+                    <ul class="profile-info-list">
+                        <li>
+                            <i class="fa-solid fa-calendar-days" style="color: var(--primary); width: 20px;"></i>
+                            <span class="label"><span class="multilingual zh">出生年月</span><span
+                                    class="multilingual en">Date of Birth</span></span>
+                            <span class="value">
+                                <span class="multilingual zh"><span id="profile-age-zh">35</span>岁 / 1990年10月</span>
+                                <span class="multilingual en"><span id="profile-age-en">35</span> / October 1990</span>
+                            </span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-graduation-cap" style="color: var(--primary); width: 20px;"></i>
+                            <span class="label"><span class="multilingual zh">教育背景</span><span
+                                    class="multilingual en">Education</span></span>
+                            <span class="value">
+                                <span class="multilingual zh">武汉软件工程职业学院 (2009-2012)</span>
+                                <span class="multilingual en">Wuhan Software Engineering Vocational College
+                                    (2009-2012)</span>
+                            </span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-briefcase" style="color: var(--primary); width: 20px;"></i>
+                            <span class="label"><span class="multilingual zh">工作年限</span><span
+                                    class="multilingual en">Experience</span></span>
+                            <span class="value">
+                                <span class="multilingual zh" id="profile-years-zh">14年+</span>
+                                <span class="multilingual en" id="profile-years-en">14+ Years</span>
+                            </span>
+                        </li>
+                        <li class="multilingual zh">
+                            <i class="fa-brands fa-weixin" style="color: var(--primary); width: 20px;"></i>
+                            <span class="label">微信</span>
+                            <span class="value">lzqwebsoft</span>
+                        </li>
+                        <li class="multilingual en">
+                            <i class="fa-brands fa-x-twitter" style="color: var(--primary); width: 20px;"></i>
+                            <span class="label">X</span>
+                            <span class="value"><a href="https://x.com/lzqwebsoft" target="_blank">lzqwebsoft</a></span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-envelope" style="color: var(--primary); width: 20px;"></i>
+                            <span class="label"><span class="multilingual zh">电子邮箱</span><span
+                                    class="multilingual en">Email</span></span>
+                            <span class="value"><a href="mailto:lzqwebsoft@gmail.com">lzqwebsoft@gmail.com</a></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="traits-grid">
+                    <div class="glass-card trait-item">
+                        <h3>
+                            <i class="fa-solid fa-rocket" style="color: var(--primary);"></i>
+                            <span class="multilingual zh">全栈交付与自主产品化</span>
+                            <span class="multilingual en">Full-Stack Capability</span>
+                        </h3>
+                        <p class="multilingual zh">熟悉前后端、原生移动端、云端及小程序，具备极其强悍的0到1闭环构建与交付能力。</p>
+                        <p class="multilingual en">Mastered backend, frontend, native iOS/Android, and cloud pipelines,
+                            ensuring quick, self-contained product deliveries.</p>
+                    </div>
+                    <div class="glass-card trait-item">
+                        <h3>
+                            <i class="fa-solid fa-lightbulb" style="color: var(--primary);"></i>
+                            <span class="multilingual zh">AI 赋能与 Vibe Coding 实践</span>
+                            <span class="multilingual en">AI-Assisted Efficiency</span>
+                        </h3>
+                        <p class="multilingual zh">深度掌握 AI 提示词工程，熟悉 MCP 协议，通过自定义 Skill 扩展 AI 上下文能力，十倍提升研发吞吐。</p>
+                        <p class="multilingual en">Leading prompt architect using MCP protocols & custom skill engines,
+                            boosting development velocity and product validation loops.</p>
+                    </div>
+                    <div class="glass-card trait-item">
+                        <h3>
+                            <i class="fa-solid fa-bullseye" style="color: var(--primary);"></i>
+                            <span class="multilingual zh">责任担当与极致工程素养</span>
+                            <span class="multilingual en">Accountability & Rigor</span>
+                        </h3>
+                        <p class="multilingual zh">高度负责的工作作风，极佳的代码风格与规范理念，具备快速学习新栈并部署至生产的自驱力。</p>
+                        <p class="multilingual en">Deeply accountable coding style, strict guidelines adherence, and
+                            quick learning capacity to integrate bleeding-edge tech into production.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Skills Section -->
+        <section id="skills" style="padding: 40px 0;">
+            <div class="section-title">
+                <h2>
+                    <span class="multilingual zh">专业技能清单</span>
+                    <span class="multilingual en">Professional Skills Matrix</span>
+                </h2>
+                <p>
+                    <span class="multilingual zh">14年沉淀的多平台与跨语言架构能力</span>
+                    <span class="multilingual en">Multi-language skills accumulated across 14 years of
+                        development</span>
+                </p>
+            </div>
+            <div class="skills-grid">
+                <!-- Mobile Skills -->
+                <div class="glass-card skill-card">
+                    <div class="skill-card-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                    <h3>
+                        <span class="multilingual zh">移动端 & 跨平台</span>
+                        <span class="multilingual en">Mobile & Cross-Platform</span>
+                    </h3>
+                    <div class="skill-list">
+                        <span class="skill-badge">Android (Java/Kotlin)</span>
+                        <span class="skill-badge">iOS (Swift)</span>
+                        <span class="skill-badge">Flutter</span>
+                        <span class="skill-badge">Uniapp</span>
+                        <span class="skill-badge">Retrofit2 / Room</span>
+                        <span class="skill-badge">Alamofire / SnapKit</span>
+                        <span class="skill-badge">WeChat MiniProgram</span>
+                    </div>
+                </div>
+                <!-- Backend Skills -->
+                <div class="glass-card skill-card">
+                    <div class="skill-card-icon"><i class="fa-solid fa-gears"></i></div>
+                    <h3>
+                        <span class="multilingual zh">后端技术架构</span>
+                        <span class="multilingual en">Backend Engineering</span>
+                    </h3>
+                    <div class="skill-list">
+                        <span class="skill-badge">Go / Gin</span>
+                        <span class="skill-badge">PHP / Yii / Laravel</span>
+                        <span class="skill-badge">Spring Boot / Java</span>
+                        <span class="skill-badge">Ruby on Rails</span>
+                        <span class="skill-badge">Python / FastAPI</span>
+                    </div>
+                </div>
+                <!-- Databases & DevOps -->
+                <div class="glass-card skill-card">
+                    <div class="skill-card-icon"><i class="fa-solid fa-database"></i></div>
+                    <h3>
+                        <span class="multilingual zh">数据库 & 云原生</span>
+                        <span class="multilingual en">Databases & DevOps</span>
+                    </h3>
+                    <div class="skill-list">
+                        <span class="skill-badge">MySQL</span>
+                        <span class="skill-badge">PostgreSQL</span>
+                        <span class="skill-badge">Redis</span>
+                        <span class="skill-badge">Memcached</span>
+                        <span class="skill-badge">ElasticSearch</span>
+                        <span class="skill-badge">Docker / Compose</span>
+                        <span class="skill-badge">Nginx / Linux</span>
+                    </div>
+                </div>
+                <!-- AI developer -->
+                <div class="glass-card skill-card">
+                    <div class="skill-card-icon"><i class="fa-solid fa-robot"></i></div>
+                    <h3>
+                        <span class="multilingual zh">AI 协同开发</span>
+                        <span class="multilingual en">AI-Assisted Dev</span>
+                    </h3>
+                    <div class="skill-list">
+                        <span class="skill-badge">Claude Code</span>
+                        <span class="skill-badge">Antigravity</span>
+                        <span class="skill-badge">Trae / Cursor</span>
+                        <span class="skill-badge">MCP Skills Expansion</span>
+                        <span class="skill-badge">Vibe Coding</span>
+                        <span class="skill-badge">Prompt Design</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Breakthroughs & Optimizations -->
+        <section id="optimizations" style="padding: 40px 0;">
+            <div class="section-title">
+                <h2>
+                    <span class="multilingual zh">技术攻坚与优化经历</span>
+                    <span class="multilingual en">Technical Optimizations</span>
+                </h2>
+                <p>
+                    <span class="multilingual zh">专注于在复杂或极端场景下突破性能与稳定性</span>
+                    <span class="multilingual en">Focusing on high performance and robustness under critical
+                        environments</span>
+                </p>
+            </div>
+            <div class="optimizations-grid">
+                <!-- Case 1 -->
+                <div class="glass-card opt-card">
+                    <div class="opt-tag tag-arch">
+                        <span class="multilingual zh">数据同步</span>
+                        <span class="multilingual en">Data Sync</span>
+                    </div>
+                    <h3>
+                        <span class="multilingual zh">FSC一网统管：离线/在线数据高精度同步</span>
+                        <span class="multilingual en">FSC Inspector: High-Accuracy Offline/Online Sync</span>
+                    </h3>
+                    <div class="opt-details">
+                        <div class="opt-step challenge">
+                            <span class="label"><span class="multilingual zh">挑战</span><span
+                                    class="multilingual en">Challenge</span></span>
+                            <p>
+                                <span class="multilingual zh">海事局检查人员进入机舱常无网络信号，需本地填写离线存储，恢复连网后同步，易发生数据丢失及重复。</span>
+                                <span class="multilingual en">Inspectors frequently enter engine rooms with no signals.
+                                    System needs offline collection & zero loss sync back on land.</span>
+                            </p>
+                        </div>
+                        <div class="opt-step solution">
+                            <span class="label"><span class="multilingual zh">解决 & 成效</span><span
+                                    class="multilingual en">Result</span></span>
+                            <p>
+                                <span
+                                    class="multilingual zh">设计本地数据库+后台队列重试离线一体化同步架构。解耦底层网络冲突，将同步成功率提升至99%+，彻底避免重复检查。</span>
+                                <span class="multilingual en">Designed local DB + queuing retry architecture. Decoupled
+                                    sync conflicts, raising synchronization success rate to 99%+.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Case 2 -->
+                <div class="glass-card opt-card">
+                    <div class="opt-tag tag-comms">
+                        <span class="multilingual zh">硬件通信</span>
+                        <span class="multilingual en">Hardware Comms</span>
+                    </div>
+                    <h3>
+                        <span class="multilingual zh">CT造影终端：WiFi+蓝牙冗余高抗干扰通信</span>
+                        <span class="multilingual en">CT Controller: WiFi/Bluetooth Dual Redundancy</span>
+                    </h3>
+                    <div class="opt-details">
+                        <div class="opt-step challenge">
+                            <span class="label"><span class="multilingual zh">挑战</span><span
+                                    class="multilingual en">Challenge</span></span>
+                            <p>
+                                <span class="multilingual zh">强电磁干扰的医疗CT实验室中，单信道容易断连，将阻断实时注射进度状态同步及压力曲线绘制。</span>
+                                <span class="multilingual en">High electromagnetic interference in medical CT rooms
+                                    causes packet losses, stopping real-time pressure curves mapping.</span>
+                            </p>
+                        </div>
+                        <div class="opt-step solution">
+                            <span class="label"><span class="multilingual zh">解决 & 成效</span><span
+                                    class="multilingual en">Result</span></span>
+                            <p>
+                                <span class="multilingual zh">构建 WiFi Socket +
+                                    蓝牙双通道网络冗余方案，自动无感热切换，实现毫秒级通信延迟，完美保障注射进度数据的极高可用。</span>
+                                <span class="multilingual en">Built dynamic hot-swapping WiFi/Bluetooth channels,
+                                    ensuring sub-10ms latency & robust wireless links in CT labs.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Case 3 -->
+                <div class="glass-card opt-card">
+                    <div class="opt-tag tag-sys">
+                        <span class="multilingual zh">系统优化</span>
+                        <span class="multilingual en">System Tuning</span>
+                    </div>
+                    <h3>
+                        <span class="multilingual zh">疼痛管理终端：Android离线推送穿透与实时 IM</span>
+                        <span class="multilingual en">Pain Management: Android Background Alert Penetration</span>
+                    </h3>
+                    <div class="opt-details">
+                        <div class="opt-step challenge">
+                            <span class="label"><span class="multilingual zh">挑战</span><span
+                                    class="multilingual en">Challenge</span></span>
+                            <p>
+                                <span class="multilingual zh">医疗疼痛泵异常发生时，医生端App因后台休眠或进程被杀无法及时接收报警，危及患者生命。</span>
+                                <span class="multilingual en">Urgent medical alarm signals fail to wake up physician
+                                    Android applications in energy-saving/killed modes.</span>
+                            </p>
+                        </div>
+                        <div class="opt-step solution">
+                            <span class="label"><span class="multilingual zh">解决 & 成效</span><span
+                                    class="multilingual en">Result</span></span>
+                            <p>
+                                <span class="multilingual zh">深层适配及穿透优化多厂商推送通道。整合腾讯即时消息 IM
+                                    SDK，设计离线保活机制，大幅缩短紧急告警送达延迟。</span>
+                                <span class="multilingual en">Customized native background notification tunnels.
+                                    Integrated Tencent IM SDK, keeping notifications functional in extreme idle
+                                    modes.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Case 4 -->
+                <div class="glass-card opt-card">
+                    <div class="opt-tag tag-ai">
+                        <span class="multilingual zh">效率提升</span>
+                        <span class="multilingual en">Efficiency</span>
+                    </div>
+                    <h3>
+                        <span class="multilingual zh">船舶自查小程序：AI 赋能 Vibe Coding 敏捷交付</span>
+                        <span class="multilingual en">Ship Safety Mini-Program: Vibe Coding Rapid Delivery</span>
+                    </h3>
+                    <div class="opt-details">
+                        <div class="opt-step challenge">
+                            <span class="label"><span class="multilingual zh">挑战</span><span
+                                    class="multilingual en">Challenge</span></span>
+                            <p>
+                                <span class="multilingual zh">业务逻辑繁杂（开航前自查规则与闭环整改），要在极短时间内完成全套界面及 FastAPI 接口的发布。</span>
+                                <span class="multilingual en">Complex maritime rules must be transformed into clean user
+                                    experiences and APIs within strict deadlines.</span>
+                            </p>
+                        </div>
+                        <div class="opt-step solution">
+                            <span class="label"><span class="multilingual zh">解决 & 成效</span><span
+                                    class="multilingual en">Result</span></span>
+                            <p>
+                                <span class="multilingual zh">利用提示词工程将十余年海事业务逻辑抽象为AI生成规则，结合 Vibe Coding
+                                    快速迭代出高质量界面及接口，开发周期缩短50%。</span>
+                                <span class="multilingual en">Synthesized domains knowledge into prompt configurations,
+                                    creating production code rapidly and slashing implementation time by 50%.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Career Journey & Projects Section -->
+    </main>
+
+    <section id="experience"
+        style="background: linear-gradient(135deg, rgba(255, 82, 119, 0.03) 0%, rgba(255, 204, 51, 0.015) 50%, rgba(45, 52, 70, 0.05) 100%); border-top: 1px solid rgba(45, 52, 70, 0.06); border-bottom: 1px solid rgba(45, 52, 70, 0.06); padding: 50px 0; position: relative;">
+        <div
+            style="position: absolute; top: 20px; right: 24px; font-family: var(--font-tech); font-size: 10px; color: rgba(45, 52, 70, 0.35); letter-spacing: 2px; user-select: none;">
+            SYSTEM://GROWTH_LOG_DATA</div>
+        <div class="wrapper">
+            <div class="section-title">
+                <h2>
+                    <span class="multilingual zh">职业成长与项目轨迹</span>
+                    <span class="multilingual en">Career & Project Journey</span>
+                </h2>
+                <p>
+                    <span class="multilingual zh">由全栈工程师向技术驱动者的演进之路</span>
+                    <span class="multilingual en">Evolving from a general programmer to a technical driver</span>
+                </p>
+            </div>
+
+            <!-- Interactive Filters -->
+            <div class="timeline-filter">
+                <button class="filter-btn active" data-filter="all">
+                    <span class="multilingual zh">全部</span>
+                    <span class="multilingual en">All</span>
+                </button>
+                <button class="filter-btn" data-filter="mobile">
+                    <span class="multilingual zh">移动端 & 智能终端</span>
+                    <span class="multilingual en">Mobile & Devices</span>
+                </button>
+                <button class="filter-btn" data-filter="web">
+                    <span class="multilingual zh">Web & 后端系统</span>
+                    <span class="multilingual en">Web & Backend</span>
+                </button>
+            </div>
+
+            <!-- Timeline -->
+            <div class="timeline">
+                <!-- Company 1 -->
+                <div class="timeline-item company-node" data-categories="mobile web">
+                    <div class="timeline-header">
+                        <h3>
+                            <span class="multilingual zh">上海旗帜信息技术有限公司</span>
+                            <span class="multilingual en">Shanghai Flag Information Technology Co., Ltd.</span>
+                            <span class="role">
+                                <span class="multilingual zh">移动开发工程师 / 高级 WEB 工程师</span>
+                                <span class="multilingual en">Mobile & Senior Web Engineer</span>
+                            </span>
+                        </h3>
+                        <span class="timeline-date">2013.06 - <span class="multilingual zh">至今</span><span
+                                class="multilingual en">Present</span></span>
+                    </div>
+                    <div class="timeline-body">
+                        <p class="multilingual zh">主要负责移动设备端与复杂 Web 后台管理系统的全栈技术研发。主导核心攻坚任务，将 AI 与行业积累深度结合以赋能项目开发。</p>
+                        <p class="multilingual en">Led software design for mobile applications and large-scale web
+                            dashboards, optimizing offline-first capabilities and IoT interactions.</p>
+
+                        <div class="timeline-projects">
+                            <!-- Project 1.1 -->
+                            <div class="project-card" data-cat="mobile">
+                                <h4>
+                                    <span class="multilingual zh">1. 港口国监督检查(PSC)国产化终端</span>
+                                    <span class="multilingual en">1. Kirin/UOS Port of PSC Mobile Terminal</span>
+                                    <span class="tag">Flutter</span>
+                                </h4>
+                                <p class="multilingual zh">基于海事终端国产化替换需求，使用 Flutter
+                                    迁移应用至国产系统平台。设计离线检查数据流与本地缓存编排，突破麒麟/UOS 系统下的文件路径映射与 API 兼容屏障。</p>
+                                <p class="multilingual en">Ported enforcement software to Kirin/UOS using Flutter.
+                                    Developed customized file path translations and offline SQLite sync systems.</p>
+                            </div>
+                            <!-- Project 1.2 -->
+                            <div class="project-card" data-cat="mobile web">
+                                <h4>
+                                    <span class="multilingual zh">2. 船舶安全管理小程序</span>
+                                    <span class="multilingual en">2. Ship Safety WeChat Mini-Program</span>
+                                    <span class="tag">Uni-app & FastAPI</span>
+                                </h4>
+                                <p class="multilingual zh">负责安全自查与隐患整改全栈开发。实践 Vibe Coding 模式，应用 AI 工具自动化处理 UI
+                                    与前端/后端逻辑构建，加快项目发布周期。</p>
+                                <p class="multilingual en">Full-stack setup for maritime compliance inspections.
+                                    Optimized code output using AI-driven prompt pipelines to fast-track releases.</p>
+                            </div>
+                            <!-- Project 1.3 -->
+                            <div class="project-card" data-cat="mobile">
+                                <h4>
+                                    <span class="multilingual zh">3. CT造影控制终端</span>
+                                    <span class="multilingual en">3. CT Imaging Injector Console App</span>
+                                    <span class="tag">Kotlin (Android)</span>
+                                </h4>
+                                <p class="multilingual zh">主控终端独立研发，设计高度定制的动态注射压力曲线与状态动画。实现 WiFi Socket +
+                                    蓝牙双通道网络热备与冗余，在医学干扰环境下维持稳定通信。</p>
+                                <p class="multilingual en">Standalone Kotlin app. Rendered real-time pressure curves and
+                                    established a WiFi Socket / Bluetooth dual-redundant link in lab setups.</p>
+                            </div>
+                            <!-- Project 1.4 -->
+                            <div class="project-card" data-cat="mobile">
+                                <h4>
+                                    <span class="multilingual zh">4. 疼痛管理系统(iOS/Android)</span>
+                                    <span class="multilingual en">4. Pain Management Mobile Platform</span>
+                                    <span class="tag">Swift & Kotlin</span>
+                                </h4>
+                                <p class="multilingual zh">双平台原生模块搭建。整合腾讯即时消息（IM）SDK，完成医疗警报 Android
+                                    系统后台推送防杀，确保医生在手机黑屏离线下仍能接到报警提醒。</p>
+                                <p class="multilingual en">Native iOS/Android dev. Integrated Tencent IM SDK, optimized
+                                    push alerts to bypass deep background sleeping modes of devices.</p>
+                            </div>
+                            <!-- Project 1.5 -->
+                            <div class="project-card" data-cat="mobile">
+                                <h4>
+                                    <span class="multilingual zh">5. 一网统管Android执法客户端</span>
+                                    <span class="multilingual en">5. "Grid Management" Maritime Enforcement App</span>
+                                    <span class="tag">Kotlin (Android)</span>
+                                </h4>
+                                <p class="multilingual zh">0到1开发模块化分层路由架构。主导 FSC 离线填报系统，将本地加密库与服务端进行无感同步，数据同步率达99%+。</p>
+                                <p class="multilingual en">Modular framework architecture. Designed robust offline
+                                    database and background syncing, achieving a 99%+ data sync success rate.</p>
+                            </div>
+                            <!-- Project 1.6 -->
+                            <div class="project-card" data-cat="web">
+                                <h4>
+                                    <span class="multilingual zh">6. 巧虎学前教育商城项目</span>
+                                    <span class="multilingual en">6. QiaoHu E-Commerce Platform</span>
+                                    <span class="tag">PHP (Yii) & Redis & Mycat</span>
+                                </h4>
+                                <p class="multilingual zh">大型多子系统微服务化拆分，集成 CAS 单点登录。在高并发礼品抢购环节使用 Redis 消费队列削峰，利用 Mycat
+                                    完成 MySQL 读写分离以应对访问压力。</p>
+                                <p class="multilingual en">Monolith decomposition, CAS SSO integration. Engineered Redis
+                                    consumer lists to handle burst flash-sales traffic, with Mycat read/write split
+                                    database layouts.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Company 2 -->
+                <div class="timeline-item company-node" data-categories="web">
+                    <div class="timeline-header">
+                        <h3>
+                            <span class="multilingual zh">上海微创软件股份有限公司</span>
+                            <span class="multilingual en">Shanghai Wicresoft Co., Ltd.</span>
+                            <span class="role">
+                                <span class="multilingual zh">开发工程师 / 实习生</span>
+                                <span class="multilingual en">Software Developer / Intern</span>
+                            </span>
+                        </h3>
+                        <span class="timeline-date">2011.07 - 2013.06</span>
+                    </div>
+                    <div class="timeline-body">
+                        <p class="multilingual zh">在国际化外包团队中锻炼了深厚的技术底蕴，涉猎本田大中型客户管理及开源项目定制研发，积累了丰富的现场运维调试经验。</p>
+                        <p class="multilingual en">Gained strong engineering discipline working with enterprise booking
+                            and open-source project management systems.</p>
+
+                        <div class="timeline-projects">
+                            <div class="project-card" data-cat="web">
+                                <h4>
+                                    <span class="multilingual zh">1. 本田售后在线服务预订系统</span>
+                                    <span class="multilingual en">1. Honda Online Service Booking Platform</span>
+                                    <span class="tag">Java (Spring/Struts/iBatis)</span>
+                                </h4>
+                                <p class="multilingual zh">服务于马来西亚 Honda。构建预订中心、班组技工任务智能调度及工作流管理模块，负责整体功能的调试集成与功能测试。</p>
+                                <p class="multilingual en">Built enterprise scheduling workflows for Honda booking
+                                    centers, implementing technician resource dispatch algorithms.</p>
+                            </div>
+                            <div class="project-card" data-cat="web">
+                                <h4>
+                                    <span class="multilingual zh">2. Redmine 项目管理系统深度二次定制</span>
+                                    <span class="multilingual en">2. Redmine Project Management Customization</span>
+                                    <span class="tag">Ruby on Rails</span>
+                                </h4>
+                                <p class="multilingual zh">基于 ROR 对 Redmine 任务追踪进行深度重构。开发邮件与页面自动通知提醒扩展，实现自动化多格式报表导入导出。
+                                </p>
+                                <p class="multilingual en">Extended Redmine core models. Developed automation mail
+                                    alerts and complex Excel/PDF document parsers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="link-btn">
-            <a href="https://github.com/lzqwebsoft" class="theme-btn btn-style-one">GitHub</a>
-            <a href="https://blog.zqluo.com" class="theme-btn btn-style-two">Blog</a>
-            <a href="/pages/playground.html" class="theme-btn btn-style-three">Playground</a>
+    </section>
+
+    <main class="wrapper">
+
+        <!-- Works & Technical Articles -->
+        <section id="works" style="padding: 40px 0;">
+            <div class="section-title">
+                <h2>
+                    <span class="multilingual zh">开源项目与技术文章</span>
+                    <span class="multilingual en">Open Source & Publications</span>
+                </h2>
+                <p>
+                    <span class="multilingual zh">开放共享，通过技术博客与社区回馈开源</span>
+                    <span class="multilingual en">Believer in open source, writing, and technical sharing</span>
+                </p>
+            </div>
+
+            <div class="works-grid">
+                <!-- Work 1 -->
+                <a href="https://github.com/lzqwebsoft/Trainticket" target="_blank" class="glass-card work-card">
+                    <div class="work-header">
+                        <h3>Trainticket</h3>
+                        <span class="stars"><i class="fa-solid fa-star"></i> 18</span>
+                    </div>
+                    <p class="multilingual zh">基于 Python 抓包分析 12306 官方票务接口并实现的可视化桌面自动抢票程序。</p>
+                    <p class="multilingual en">Python ticket grabber dashboard. Decoupled 12306 APIs via packet
+                        inspection to streamline buying workflows.</p>
+                    <div class="work-footer">
+                        <span>Python</span>
+                        <span><i class="fa-solid fa-code-fork"></i> 15 Forks</span>
+                    </div>
+                </a>
+                <!-- Work 2 -->
+                <a href="https://github.com/lzqwebsoft/Heroku-blog" target="_blank" class="glass-card work-card">
+                    <div class="work-header">
+                        <h3>Heroku-blog</h3>
+                        <span class="stars"><i class="fa-solid fa-star"></i> 8</span>
+                    </div>
+                    <p class="multilingual zh">基于 Spring Boot 的轻量级个人博客管理系统，使用 Maven 构建并云化部署于 Heroku。</p>
+                    <p class="multilingual en">Lightweight cloud-native blog platform written using Spring Boot, Maven,
+                        and integrated for Heroku deployment.</p>
+                    <div class="work-footer">
+                        <span>Java</span>
+                        <span><i class="fa-solid fa-code-fork"></i> 6 Forks</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Articles List -->
+            <div class="articles-list">
+                <a href="https://blog.zqluo.com/show/20190107050121" target="_blank" class="article-item">
+                    <h4>
+                        <span class="multilingual zh">前后端分离用户身份状态保持的思考</span>
+                        <span class="multilingual en">Thoughts on Session State Maintenance in Decoupled
+                            Architectures</span>
+                    </h4>
+                    <span class="category">Architecture</span>
+                </a>
+                <a href="https://blog.zqluo.com/show/20180722075019" target="_blank" class="article-item">
+                    <h4>
+                        <span class="multilingual zh">简述 XMPP WEB 协议登录</span>
+                        <span class="multilingual en">Brief Analysis of XMPP Web Communication Authentication</span>
+                    </h4>
+                    <span class="category">Protocol</span>
+                </a>
+                <a href="https://blog.zqluo.com/show/20150318094909" target="_blank" class="article-item">
+                    <h4>
+                        <span class="multilingual zh">Magento 多文件上传代码功能实现</span>
+                        <span class="multilingual en">Implementing Multi-File Upload Mechanisms in Magento</span>
+                    </h4>
+                    <span class="category">PHP/Magento</span>
+                </a>
+                <a href="https://blog.zqluo.com/show/20140123120347" target="_blank" class="article-item">
+                    <h4>
+                        <span class="multilingual zh">解析12306订票流程</span>
+                        <span class="multilingual en">Deconstructing 12306 Ticket Booking Workflows</span>
+                    </h4>
+                    <span class="category">HTTP/Python</span>
+                </a>
+                <a href="https://blog.csdn.net/lzqwebsoft/article/details/7054045" target="_blank" class="article-item">
+                    <h4>
+                        <span class="multilingual zh">Android 访问中央气象台的天气预报 API 得到天气数据</span>
+                        <span class="multilingual en">Accessing China Meteorological Administration Weather API on
+                            Android</span>
+                    </h4>
+                    <span class="category">Android</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Interactive Terminal Log -->
+        <div class="glass-card terminal-block">
+            <div class="terminal-header-bar">
+                <div class="terminal-buttons">
+                    <span class="btn-red"></span>
+                    <span class="btn-yellow"></span>
+                    <span class="btn-green"></span>
+                </div>
+                <div class="terminal-title">zqluo@core-engine:~</div>
+                <div></div>
+            </div>
+            <div class="terminal-body" id="terminal-output">
+                <div class="terminal-line"><span class="terminal-cmd">$</span> initialize zqluo_core_system</div>
+                <div class="terminal-line">> Loading fullstack protocols... <span class="terminal-success">OK</span>
+                </div>
+                <div class="terminal-line">> Loading mobile native structures... <span
+                        class="terminal-success">OK</span></div>
+                <div class="terminal-line">> Initializing AI-assisted Vibe coding shell... <span
+                        class="terminal-success">READY</span></div>
+                <div class="terminal-line">> System boot sequence completed. 14 years of experience compiled
+                    successfully.</div>
+            </div>
         </div>
-    </div>
+    </main>
+
+    <!-- Footer block strictly preserving user requirements -->
     <div class="footer">
         <div class="footer-beian">
             <a href="https://beian.mps.gov.cn/#/query/webSearch?code=31011202022211" rel="noreferrer" target="_blank">
@@ -282,30 +2113,346 @@
         </div>
         <p class="footer-copy">© 2026 zqluo.com 版权所有</p>
     </div>
-    <!-- FROM http://v.bootstrapmb.com/2019/6/781485123/ -->
-    <script src="/assets/javascripts/jquery.js"></script>
-    <script src="/assets/javascripts/jquery-type.js"></script>
-    <script src="/assets/javascripts/particle-alone.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            $(".typed-title").typed({
-                stringsElement: $(".typing-title"),
-                cursorChar: "",
-                backDelay: 1200,
-                typeSpeed: 1,
-                loop: true
+
+    <!-- Floating Rocket Back-To-Top Button -->
+    <button id="back-to-top" class="back-to-top-btn" aria-label="Back to Top">
+        <i class="fa-solid fa-rocket"></i>
+    </button>
+
+    <!-- Script logic -->
+    <script>
+        // Language Switcher mechanism
+        const langToggleBtn = document.getElementById('lang-toggle');
+
+        // Parse URL query parameter 'lang' to allow direct link sharing in specific language
+        const urlParams = new URLSearchParams(window.location.search);
+        const langParam = urlParams.get('lang');
+
+        let currentLang = localStorage.getItem('portfolio-lang') || 'zh';
+        if (langParam === 'en' || langParam === 'zh') {
+            currentLang = langParam;
+            localStorage.setItem('portfolio-lang', currentLang);
+        }
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('portfolio-lang', lang);
+
+            // Update URL search parameters without page reload for easy link sharing
+            const url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            window.history.replaceState({}, '', url.toString());
+
+            if (lang === 'zh') {
+                document.documentElement.className = 'lang-zh';
+                document.documentElement.setAttribute('lang', 'zh-CN');
+                langToggleBtn.textContent = 'EN';
+                // Dynamic page title & desc
+                document.getElementById('page-title').innerText = "独坐码前-ZQLUO | 14年资深全栈与移动开发专家 | 架构与性能优化";
+                document.getElementById('meta-description').content = "独坐码前-ZQLUO 的个人官方网站。14年+全栈软件开发经验，精通 Android、iOS、Flutter、Java、Go、PHP。专注于移动端弱网离线高并发同步优化、医疗级低延迟多通道冗余通信，以及 AI 辅助编程与 MCP 插件开发。";
+            } else {
+                document.documentElement.className = 'lang-en';
+                document.documentElement.setAttribute('lang', 'en');
+                langToggleBtn.textContent = '中文';
+                document.getElementById('page-title').innerText = "ZQLUO | 14+ Years Senior Full-Stack & Mobile Developer | Systems & Optimization Expert";
+                document.getElementById('meta-description').content = "Official website of ZQLUO (Sitting Alone Before the Code). 14+ years of full-stack software development experience. Specialized in Android, iOS, Flutter, Java, Go, and PHP. Focuses on weak-network offline synchronization and medical low-latency communication.";
+            }
+            // Reset typing effect
+            charIndex = 0;
+            isDeleting = false;
+            sentenceIndex = 0;
+            typeEffect();
+        }
+
+        langToggleBtn.addEventListener('click', () => {
+            setLanguage(currentLang === 'zh' ? 'en' : 'zh');
+        });
+
+        // Typing subtitles effect
+        let typingTimeout;
+        let charIndex = 0;
+        let sentenceIndex = 0;
+        let isDeleting = false;
+
+        function typeEffect() {
+            const zhStrings = [
+                "全栈软件开发专家.",
+                "原生移动端与跨平台先锋.",
+                "AI 辅助编程(Vibe Coding)极客."
+            ];
+            const enStrings = [
+                "Full-Stack Architect.",
+                "Native Mobile & Cross-platform Expert.",
+                "AI Vibe Coding Enthusiast."
+            ];
+            const strings = currentLang === 'zh' ? zhStrings : enStrings;
+            const targetElement = document.getElementById('typed-text');
+            if (!targetElement) return;
+
+            const currentSentence = strings[sentenceIndex];
+
+            if (isDeleting) {
+                targetElement.textContent = currentSentence.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                targetElement.textContent = currentSentence.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let speed = isDeleting ? 30 : 80;
+
+            if (!isDeleting && charIndex === currentSentence.length) {
+                speed = 2000; // Pause at end of sentence
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                sentenceIndex = (sentenceIndex + 1) % strings.length;
+                speed = 500; // Pause before typing next
+            }
+
+            clearTimeout(typingTimeout);
+            typingTimeout = setTimeout(typeEffect, speed);
+        }
+
+        // Timeline Filter mechanism
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Set active class
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                // Filter Timeline Items
+                timelineItems.forEach(item => {
+                    const categories = item.getAttribute('data-categories');
+                    if (filter === 'all' || categories.includes(filter)) {
+                        item.style.display = 'block';
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    } else {
+                        item.style.display = 'none';
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(15px)';
+                    }
+                });
+
+                // Filter Project Cards internally
+                projectCards.forEach(card => {
+                    const cardCat = card.getAttribute('data-cat');
+                    if (filter === 'all' || cardCat.includes(filter)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
             });
-            console.log("关于页面源码的出处说明:");
-            console.log("页面模板来自于：http://v.bootstrapmb.com/2019/6/781485123/");
-            console.log("光标输入特效来自于：https://css-tricks.com/snippets/css/typewriter-effect/");
-            // 计算工作年限
-            var current = new Date();
-            var currentYear = current.getFullYear();
-            var workingYears = currentYear >= 2019 ? currentYear - 2012 : 2019 - 2012;
-            $("#working-years").text(workingYears);
+        });
+
+        // Interactive constellation particle background
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const maxParticles = 90;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.6;
+                this.vy = (Math.random() - 0.5) * 0.6;
+                this.radius = Math.random() * 2 + 1.5;
+                // Original colors: Yellow #FFCC00, Blue #66CCF0, Red #FF0033, Green #99CC33
+                const colors = ['rgba(255, 204, 51, 0.6)', 'rgba(102, 204, 240, 0.6)', 'rgba(255, 0, 51, 0.6)', 'rgba(153, 204, 51, 0.6)'];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+                if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < maxParticles; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                p.update();
+                p.draw();
+                for (let j = i + 1; j < particles.length; j++) {
+                    const p2 = particles[j];
+                    const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                    if (dist < 120) {
+                        const alpha = (1 - dist / 120) * 0.15;
+                        ctx.strokeStyle = `rgba(45, 52, 70, ${alpha})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        // Calculate dynamic age and experience years using JavaScript
+        function updateDynamicInfo() {
+            // Calculate age (born October 1990)
+            const birthDate = new Date(1990, 9, 1);
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+
+            // Calculate experience years (started working in 2012)
+            const startWorkingYear = 2012;
+            const yearsCount = today.getFullYear() - startWorkingYear;
+
+            // Inject dynamic values into elements
+            const ageZh = document.getElementById('profile-age-zh');
+            const ageEn = document.getElementById('profile-age-en');
+            if (ageZh) ageZh.innerText = age;
+            if (ageEn) ageEn.innerText = age;
+
+            const yearsMetric = document.getElementById('working-years');
+            if (yearsMetric) yearsMetric.innerText = yearsCount + '+';
+
+            const yearsZh = document.getElementById('profile-years-zh');
+            const yearsEn = document.getElementById('profile-years-en');
+            if (yearsZh) yearsZh.innerText = yearsCount + '年+';
+            if (yearsEn) yearsEn.innerText = yearsCount + '+ Years';
+        }
+        updateDynamicInfo();
+
+        // Scroll Spy: Highlight header navigation items on scroll
+        const navLinks = document.querySelectorAll('header.navbar nav a');
+        const sections = document.querySelectorAll('section[id]');
+
+        window.addEventListener('scroll', () => {
+            let currentSectionId = '';
+            const scrollPos = window.scrollY + 160; // Offset to trigger before section hits top
+
+            sections.forEach(section => {
+                const top = section.offsetTop;
+                const height = section.offsetHeight;
+                const id = section.getAttribute('id');
+
+                if (scrollPos >= top && scrollPos < top + height) {
+                    currentSectionId = id;
+                }
+            });
+
+            // Fallback for reaching bottom of page
+            if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 5) {
+                if (sections.length > 0) {
+                    currentSectionId = sections[sections.length - 1].getAttribute('id');
+                }
+            }
+
+            if (currentSectionId) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    const href = link.getAttribute('href');
+                    if (href === '#' + currentSectionId) {
+                        link.classList.add('active');
+                    }
+                });
+            } else {
+                if (window.scrollY < 200) {
+                    navLinks.forEach(link => link.classList.remove('active'));
+                }
+            }
+        });
+
+        // Terminal animation log lines
+        const terminalOutput = document.getElementById('terminal-output');
+        const bootLogs = [
+            "> Loading container orchestrations... SUCCESS.",
+            "> Mounting model context protocols (MCP)... SUCCESS.",
+            "> Registering local plugins and custom AI skill sets... SUCCESS.",
+            "> $ cat config/developer.json",
+            "  Status: ONLINE | Focus: Code Quality & Performance"
+        ];
+        let logIndex = 0;
+        function printLogs() {
+            if (logIndex < bootLogs.length) {
+                const line = document.createElement('div');
+                line.className = 'terminal-line';
+                if (bootLogs[logIndex].startsWith('> $')) {
+                    line.innerHTML = `<span class="terminal-cmd">$</span> ${bootLogs[logIndex].substring(3)}`;
+                } else if (bootLogs[logIndex].includes('SUCCESS')) {
+                    line.innerHTML = bootLogs[logIndex].replace('SUCCESS', '<span class="terminal-success">SUCCESS</span>');
+                } else {
+                    line.textContent = bootLogs[logIndex];
+                }
+                terminalOutput.appendChild(line);
+                terminalOutput.scrollTop = terminalOutput.scrollHeight;
+                logIndex++;
+                setTimeout(printLogs, 1500);
+            }
+        }
+
+        // Initialize Page
+        setLanguage(currentLang);
+        initParticles();
+        animateParticles();
+        setTimeout(printLogs, 2500);
+
+        // Rocket Back to Top button logic
+        const backToTopBtn = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                if (!backToTopBtn.classList.contains('launching')) {
+                    backToTopBtn.classList.add('show');
+                }
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            backToTopBtn.classList.add('launching');
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+                backToTopBtn.classList.remove('launching');
+                backToTopBtn.classList.remove('show');
+            }, 1000); // Wait for the launch and scroll to complete
         });
     </script>
-
 </body>
 
 </html>

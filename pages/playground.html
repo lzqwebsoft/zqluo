@@ -7,153 +7,279 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="独坐码前-ZQLUO-的个人小工具开发游乐园。在这里汇集了我平时实践与开发的一些好玩、有趣的小项目和小工具源码，纯前端技术实现展示。">
-    <meta name="keywords" content="独坐码前, ZQLUO, 工具, 游乐园, 前端开发, 实践, 纯前端, 项目展示, Playground">
+    
+    <!-- SEO Optimization -->
+    <title>独坐码前-ZQLUO-的个人小工具开发游乐园</title>
+    <meta name="description" content="独坐码前-ZQLUO 的个人小工具开发游乐园。在这里汇集了我平时实践与开发的一些好玩、有趣的小项目和小工具源码，纯前端技术实现展示。">
+    <meta name="keywords" content="独坐码前, ZQLUO, 工具, 游乐场, 前端开发, 实践, 纯前端, 项目展示, Playground">
+    <meta name="author" content="ZQLUO">
+    <link rel="canonical" href="https://zqluo.com/pages/playground.html">
+
+    <!-- Open Graph / Share Cards -->
     <meta property="og:title" content="独坐码前-ZQLUO-的个人小工具开发游乐园">
-    <meta property="og:description" content="独坐码前-ZQLUO-的个人小工具开发游乐园。在这里汇集了我平时实践与开发的一些好玩、有趣的小项目和小工具源码，纯前端技术实现展示。">
+    <meta property="og:description" content="独坐码前-ZQLUO 的个人小工具开发游乐园。在这里汇集了我平时实践与开发的一些好玩、有趣的小项目和小工具源码，纯前端技术实现展示。">
     <meta property="og:image" content="https://zqluo.com/assets/images/my.jpg">
     <meta property="og:url" content="https://zqluo.com/pages/playground.html">
     <meta property="og:type" content="website">
-    <title>独坐码前-ZQLUO-的个人小工具开发游乐园</title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="/assets/font-awesome/css/all.min.css">
+
+    <!-- Local Fonts -->
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+
     <style>
+        /* CSS Reset & Variables */
         :root {
-            --primary-color: #9147ff;
-            --primary-light: #ab70ff;
-            --secondary-color: #fc6183;
-            --bg-color: #f8f9fa;
-            --card-bg: #ffffff;
+            --bg-color: #f4f6f9;
+            --bg-card: rgba(255, 255, 255, 0.75);
+            --border-color: rgba(255, 82, 119, 0.15);
+            --border-hover: rgba(45, 52, 70, 0.25);
+            --primary: #ff5277;
+            --primary-glow: rgba(255, 82, 119, 0.25);
+            --secondary: #2d3446;
+            --secondary-glow: rgba(45, 52, 70, 0.25);
+            --tertiary: #ffcc33;
             --text-main: #222222;
-            --text-secondary: #595959;
-            --text-lighter: #8c8c8c;
+            --text-muted: #556677;
+            --font-inter: 'Inter', 'Noto Sans SC', sans-serif;
+            --font-tech: 'Orbitron', 'Fira Code', sans-serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --border-radius: 16px;
-            --transition-speed: 0.35s;
         }
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", "Source Han Sans SC", "Noto Sans CJK SC", "WenQuanYi Micro Hei", sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
-            line-height: 1.6;
+            font-family: var(--font-inter);
+            font-size: 16px;
+            line-height: 1.65;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             overflow-x: hidden;
         }
 
-        /* 顶部导航与背景装饰 */
-        .page-header {
-            position: relative;
-            padding: 90px 20px 70px;
-            text-align: center;
-            background: linear-gradient(135deg, rgba(145, 71, 255, 0.04) 0%, rgba(252, 97, 131, 0.04) 100%);
+        /* Tech canvas particles */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
             overflow: hidden;
+            background: radial-gradient(circle at 50% 50%, #ffffff 0%, #eef2f6 100%);
         }
 
-        .header-bg-shape {
-            position: absolute;
-            border-radius: 50%;
-            z-index: 0;
-            filter: blur(50px);
-            opacity: 0.6;
-            animation: floatShape 10s infinite alternate ease-in-out;
-        }
-
-        .shape-1 {
-            background: linear-gradient(135deg, #9147ff44 0%, #ab70ff11 100%);
-            width: 350px;
-            height: 350px;
-            top: -100px;
-            left: -50px;
-        }
-
-        .shape-2 {
-            background: linear-gradient(135deg, #fc618344 0%, #ff8da611 100%);
-            width: 450px;
-            height: 450px;
-            bottom: -150px;
-            right: -100px;
-            animation-duration: 12s;
-            animation-delay: -5s;
-        }
-
-        @keyframes floatShape {
-            0% {
-                transform: translateY(0) scale(1);
-            }
-
-            100% {
-                transform: translateY(-30px) scale(1.05);
-            }
-        }
-
-        .header-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .title {
-            font-size: 2.6rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            color: var(--text-main);
-            letter-spacing: 1px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .title::after {
+        /* Cyberpunk Grid Overlay */
+        #canvas-container::after {
             content: '';
             position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            border-radius: 2px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(45, 52, 70, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(45, 52, 70, 0.015) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
         }
 
-        .subtitle {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            margin-top: 28px;
-            font-weight: 400;
+        /* Glassmorphism card */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.04);
+            transition: var(--transition);
         }
 
-        /* 主体内容 */
-        .main-container {
-            flex: 1;
+        /* Wrapper */
+        .wrapper {
             max-width: 1200px;
-            margin: -30px auto 70px;
-            padding: 0 20px;
-            position: relative;
-            z-index: 2;
+            margin: 0 auto;
+            padding: 0 24px;
             width: 100%;
         }
 
-        /* 项目列表网格布局 */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 28px;
+        /* Navigation Bar */
+        header.navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(45, 52, 70, 0.08);
         }
 
-        /* 项目卡片 */
+        header.navbar .wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        header.navbar .logo {
+            font-family: var(--font-tech);
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--secondary);
+        }
+
+        header.navbar .logo::before {
+            content: '';
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--primary);
+            animation: pulse 2s infinite;
+        }
+
+        header.navbar nav {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        header.navbar nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            padding: 6px 0;
+        }
+
+        header.navbar nav a:hover {
+            color: var(--primary);
+        }
+
+        header.navbar nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+            transform: scaleX(0);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: bottom right;
+        }
+
+        header.navbar nav a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .lang-toggle-btn {
+            background: rgba(255, 82, 119, 0.08);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-family: var(--font-tech);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .lang-toggle-btn:hover {
+            background: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 0 12px var(--primary-glow);
+        }
+
+        /* Page Header / Hero */
+        .page-header {
+            padding: 130px 0 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .hero-badge {
+            background: rgba(255, 82, 119, 0.08);
+            border: 1px solid var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-family: var(--font-tech);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .title {
+            font-family: var(--font-tech);
+            font-size: 44px;
+            font-weight: 900;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--secondary) 20%, var(--primary) 60%, var(--tertiary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 8px rgba(255, 82, 119, 0.08));
+        }
+
+        .subtitle {
+            font-size: 17px;
+            color: var(--text-muted);
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        /* Main Container */
+        .main-container {
+            flex: 1;
+            margin-bottom: 80px;
+        }
+
+        /* Project Grid */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+        }
+
+        /* Project Card */
         .project-card {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
             padding: 28px 24px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
-            transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(0, 0, 0, 0.03);
             display: flex;
             flex-direction: column;
             text-decoration: none;
@@ -165,26 +291,10 @@
             transform: translateY(30px);
         }
 
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            opacity: 0;
-            transition: opacity var(--transition-speed);
-        }
-
         .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(145, 71, 255, 0.08);
-            border-color: rgba(145, 71, 255, 0.1);
-        }
-
-        .project-card:hover::before {
-            opacity: 1;
+            border-color: var(--border-hover);
+            box-shadow: 0 12px 40px 0 rgba(255, 82, 119, 0.08);
+            transform: translateY(-4px);
         }
 
         .card-header {
@@ -193,48 +303,145 @@
             margin-bottom: 18px;
         }
 
-        .card-icon {
+        .card-icon-container {
             width: 52px;
             height: 52px;
-            border-radius: 14px;
-            background: rgba(145, 71, 255, 0.06);
-            color: var(--primary-color);
+            border-radius: 50%;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--secondary), var(--primary), var(--tertiary));
+            box-shadow: 0 0 15px rgba(255, 82, 119, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 26px;
-            margin-right: 18px;
-            transition: all var(--transition-speed) cubic-bezier(0.34, 1.56, 0.64, 1);
+            margin-right: 16px;
+            transition: var(--transition);
+        }
+
+        .card-icon {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--bg-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .card-icon-container {
+            transform: rotate(-10deg) scale(1.08);
+            box-shadow: 0 0 20px rgba(255, 82, 119, 0.3);
         }
 
         .project-card:hover .card-icon {
-            background: var(--primary-color);
-            color: #fff;
-            transform: rotate(-10deg) scale(1.1);
-            box-shadow: 0 8px 16px rgba(145, 71, 255, 0.2);
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: #ffffff;
+        }
+
+        /* Card Icon Color Themes based on project descriptions */
+        /* 1. Aliplayer (Video) - Red/Rose */
+        .icon-video .card-icon-container {
+            background: linear-gradient(135deg, #ff3b63, #ff6b8b);
+            box-shadow: 0 0 15px rgba(255, 59, 99, 0.15);
+        }
+        .icon-video .card-icon {
+            color: #ff3b63;
+        }
+        .icon-video:hover .card-icon-container {
+            box-shadow: 0 0 20px rgba(255, 59, 99, 0.4);
+        }
+        .icon-video:hover .card-icon {
+            background: linear-gradient(135deg, #ff3b63, #ff6b8b);
+            color: #ffffff;
+        }
+
+        /* 2. iPhone (Specs) - Teal/Blue */
+        .icon-specs .card-icon-container {
+            background: linear-gradient(135deg, #00d2ff, #0066ff);
+            box-shadow: 0 0 15px rgba(0, 102, 255, 0.15);
+        }
+        .icon-specs .card-icon {
+            color: #0077ff;
+        }
+        .icon-specs:hover .card-icon-container {
+            box-shadow: 0 0 20px rgba(0, 102, 255, 0.4);
+        }
+        .icon-specs:hover .card-icon {
+            background: linear-gradient(135deg, #00d2ff, #0066ff);
+            color: #ffffff;
+        }
+
+        /* 3. 2D Game (Phaser) - Purple/Indigo */
+        .icon-game .card-icon-container {
+            background: linear-gradient(135deg, #9147ff, #e0c3fc);
+            box-shadow: 0 0 15px rgba(145, 71, 255, 0.15);
+        }
+        .icon-game .card-icon {
+            color: #9147ff;
+        }
+        .icon-game:hover .card-icon-container {
+            box-shadow: 0 0 20px rgba(145, 71, 255, 0.4);
+        }
+        .icon-game:hover .card-icon {
+            background: linear-gradient(135deg, #9147ff, #e0c3fc);
+            color: #ffffff;
+        }
+
+        /* 4. Weather (Go/Spider) - Yellow/Orange */
+        .icon-weather .card-icon-container {
+            background: linear-gradient(135deg, #ffcc33, #ff9900);
+            box-shadow: 0 0 15px rgba(255, 153, 0, 0.15);
+        }
+        .icon-weather .card-icon {
+            color: #ff9900;
+        }
+        .icon-weather:hover .card-icon-container {
+            box-shadow: 0 0 20px rgba(255, 153, 0, 0.4);
+        }
+        .icon-weather:hover .card-icon {
+            background: linear-gradient(135deg, #ffcc33, #ff9900);
+            color: #ffffff;
+        }
+
+        /* 5. Phonetics (Language) - Emerald/Green */
+        .icon-lang .card-icon-container {
+            background: linear-gradient(135deg, #10b981, #059669);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.15);
+        }
+        .icon-lang .card-icon {
+            color: #059669;
+        }
+        .icon-lang:hover .card-icon-container {
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+        }
+        .icon-lang:hover .card-icon {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #ffffff;
         }
 
         .card-title {
-            font-size: 1.3rem;
-            font-weight: 600;
+            font-family: var(--font-tech);
+            font-size: 19px;
+            font-weight: 700;
             color: var(--text-main);
+            letter-spacing: 0.5px;
         }
 
         .card-desc {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            flex: 1;
+            font-size: 14.5px;
+            color: var(--text-muted);
+            line-height: 1.7;
             margin-bottom: 24px;
-            line-height: 1.6;
+            flex-grow: 1;
         }
 
         .card-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top: 1px solid #f3f3f3;
+            border-top: 1px dashed rgba(45, 52, 70, 0.08);
             padding-top: 18px;
-            font-size: 0.85rem;
         }
 
         .tech-tags {
@@ -244,44 +451,203 @@
         }
 
         .tech-tag {
-            background: #f5f5f5;
-            color: var(--text-secondary);
-            padding: 4px 12px;
-            border-radius: 20px;
-            transition: all var(--transition-speed);
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            color: var(--text-muted);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12.5px;
             font-weight: 500;
+            transition: var(--transition);
         }
 
         .project-card:hover .tech-tag {
-            background: rgba(145, 71, 255, 0.08);
-            color: var(--primary-color);
+            background: rgba(255, 82, 119, 0.08);
+            border-color: var(--primary);
+            color: var(--primary);
+            box-shadow: 0 0 8px rgba(255, 82, 119, 0.15);
         }
 
         .card-action {
-            color: var(--primary-color);
+            color: var(--primary);
             font-weight: 600;
+            font-size: 13.5px;
             display: flex;
             align-items: center;
-            opacity: 0.7;
-            transition: all var(--transition-speed);
+            gap: 4px;
+            transition: var(--transition);
         }
 
         .card-action svg {
-            margin-left: 4px;
-            width: 18px;
-            height: 18px;
-            transition: transform var(--transition-speed);
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
         }
 
         .project-card:hover .card-action {
-            opacity: 1;
-            color: var(--secondary-color);
+            color: #ff3b63;
         }
 
         .project-card:hover .card-action svg {
-            transform: translateX(6px);
+            transform: translateX(4px);
         }
 
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 60px 20px 40px;
+            color: var(--text-muted);
+            font-size: 13px;
+            width: 100%;
+            box-sizing: border-box;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            margin-top: auto;
+        }
+
+        .nav-back-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .nav-back {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 24px;
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            color: var(--secondary);
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 13.5px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+            transition: var(--transition);
+        }
+
+        .nav-back:hover {
+            box-shadow: 0 8px 25px rgba(255, 82, 119, 0.12);
+            color: var(--primary);
+            transform: translateY(-2px);
+            border-color: var(--primary);
+        }
+
+        .nav-back svg {
+            margin-right: 8px;
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-back:hover svg {
+            transform: translateX(-4px);
+        }
+
+        .footer-beian {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .footer-beian a {
+            display: inline-flex;
+            align-items: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-beian a img {
+            width: 16px;
+            height: 16px;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+
+        .footer-beian a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .footer-copy {
+            margin: 0;
+            opacity: 0.7;
+        }
+
+        /* Floating Rocket Back-To-Top Button */
+        .back-to-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            color: var(--primary);
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1000;
+            box-shadow: 0 4px 20px var(--primary-glow);
+            transition: opacity 0.3s var(--transition), transform 0.3s var(--transition), background-color 0.3s, border-color 0.3s, color 0.3s;
+        }
+
+        .back-to-top-btn.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .back-to-top-btn:hover {
+            color: #ffffff;
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255, 82, 119, 0.4);
+        }
+
+        .back-to-top-btn:active {
+            transform: translateY(-2px) scale(0.95);
+        }
+
+        /* Rocket Launch Animation */
+        @keyframes rocket-launch {
+            0% {
+                transform: translateY(0) scale(1);
+            }
+
+            15% {
+                transform: translateY(8px) scale(0.9);
+            }
+
+            35% {
+                transform: translateY(-25px) scale(1.1);
+            }
+
+            100% {
+                transform: translateY(-120vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        .back-to-top-btn.launching {
+            animation: rocket-launch 0.9s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards;
+            pointer-events: none;
+        }
+
+        /* Animations */
         @keyframes slideUp {
             from {
                 opacity: 0;
@@ -294,114 +660,77 @@
             }
         }
 
-        /* 底部导航或版权 */
-        .page-footer {
-            padding: 40px 20px;
-            text-align: center;
-            color: var(--text-lighter);
-            font-size: 0.95rem;
-            margin-top: auto;
-        }
-
-        .page-footer a {
-            color: var(--text-lighter);
-            text-decoration: none;
-        }
-
-        .page-footer a:hover {
-            color: var(--primary-color);
-            text-decoration: underline;
-        }
-
-        .nav-back {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 30px;
-            background: #fff;
-            color: var(--text-main);
-            text-decoration: none;
-            border-radius: 40px;
-            font-weight: 500;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
-            transition: all var(--transition-speed);
-            margin-bottom: 24px;
-            border: 1px solid transparent;
-        }
-
-        .nav-back:hover {
-            box-shadow: 0 8px 25px rgba(145, 71, 255, 0.15);
-            color: var(--primary-color);
-            transform: translateY(-3px);
-            border-color: rgba(145, 71, 255, 0.2);
-        }
-
-        .nav-back svg {
-            margin-right: 8px;
-            width: 20px;
-            height: 20px;
-            transition: transform var(--transition-speed);
-        }
-
-        .nav-back:hover svg {
-            transform: translateX(-4px);
-        }
-
-        .footer-beian {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 10px;
-        }
-
-        .footer-beian a {
-            display: inline-flex;
-            align-items: center;
-            color: #6c757d;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-beian a img {
-            width: 16px;
-            height: 16px;
-            margin-right: 5px;
-            vertical-align: middle;
-        }
-
-        .footer-beian a:hover {
-            color: #007bff;
-            text-decoration: underline;
-        }
-
-        .footer-copy {
-            margin: 0;
-            opacity: 0.8;
-        }
-
-        /* 响应式调整 */
-        @media (max-width: 768px) {
-            .title {
-                font-size: 2.1rem;
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
             }
 
+            50% {
+                transform: scale(1.2);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
             .page-header {
-                padding: 60px 20px 50px;
+                padding: 100px 0 40px;
+            }
+
+            .title {
+                font-size: 30px;
+            }
+
+            .subtitle {
+                font-size: 15px;
             }
 
             .project-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 16px;
             }
 
-            .subtitle {
-                font-size: 1rem;
+            header.navbar .logo {
+                font-size: 18px;
+                letter-spacing: 1px;
             }
 
-            .main-container {
-                margin-top: -20px;
+            header.navbar nav {
+                display: flex;
+                gap: 12px;
+                overflow-x: auto;
+                max-width: 50%;
+                white-space: nowrap;
+                padding: 4px 0;
+                scroll-behavior: smooth;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            header.navbar nav::-webkit-scrollbar {
+                display: none;
+            }
+
+            header.navbar nav a {
+                font-size: 12px;
+            }
+
+            .lang-toggle-btn {
+                padding: 4px 10px;
+                font-size: 11px;
+            }
+
+            .back-to-top-btn {
+                bottom: 20px;
+                right: 20px;
+                width: 44px;
+                height: 44px;
+                font-size: 18px;
             }
         }
     </style>
@@ -409,24 +738,46 @@
 
 <body>
 
-    <!-- 顶部说明区域 - SEO 优化的 H1 -->
-    <header class="page-header">
-        <div class="header-bg-shape shape-1"></div>
-        <div class="header-bg-shape shape-2"></div>
-        <div class="header-content">
-            <h1 class="title">【独坐码前】的个人小工具开发游乐园</h1>
-            <p class="subtitle">这里是用于实践各种好玩、有趣小项目与前端技术的代码游乐场，保持热爱，奔赴山海！</p>
+    <!-- Starry background canvas -->
+    <div id="canvas-container">
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="navbar">
+        <div class="wrapper">
+            <a href="/" class="logo glow-text-cyan">ZQLUO</a>
+            <nav>
+                <a href="/#about">关于我</a>
+                <a href="/#skills">专业特长</a>
+                <a href="/#optimizations">技术攻坚</a>
+                <a href="/#experience">项目轨迹</a>
+                <a href="/#works">作品&文章</a>
+            </nav>
+            <a href="/" class="lang-toggle-btn">返回首页</a>
         </div>
     </header>
 
-    <!-- 主体项目展示，语义化标签 maintain SEO -->
-    <main class="main-container">
-        <!-- 动态渲染的项目网格列表 -->
+    <!-- Header Content / Hero -->
+    <header class="page-header">
+        <div class="wrapper">
+            <div class="header-content">
+                <span class="hero-badge">Front-End & Core Sandbox</span>
+                <h1 class="title">个人小工具开发游乐园</h1>
+                <p class="subtitle">这里是用于实践各种好玩、有趣小项目与前端技术的代码游乐场，保持热爱，奔赴山海！</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main-container wrapper">
         <section class="project-grid" id="project-list" aria-label="项目列表">
             <!-- Aliplayer 播放器 -->
-            <a href="player.html" class="project-card" style="animation-delay: 0s" aria-label="查看 Aliplayer 播放器 详情">
+            <a href="player.html" class="glass-card project-card icon-video" style="animation-delay: 0s" aria-label="查看 Aliplayer 播放器 详情">
                 <div class="card-header">
-                    <div class="card-icon">🎬</div>
+                    <div class="card-icon-container">
+                        <div class="card-icon"><i class="fa-solid fa-circle-play"></i></div>
+                    </div>
                     <h2 class="card-title">Aliplayer 播放器</h2>
                 </div>
                 <div class="card-desc">
@@ -448,9 +799,11 @@
             </a>
 
             <!-- iPhone 历年参数对比 -->
-            <a href="iphone.html" class="project-card" style="animation-delay: 0.1s" aria-label="查看 iPhone 历年参数对比 详情">
+            <a href="iphone.html" class="glass-card project-card icon-specs" style="animation-delay: 0.1s" aria-label="查看 iPhone 历年参数对比 详情">
                 <div class="card-header">
-                    <div class="card-icon">📱</div>
+                    <div class="card-icon-container">
+                        <div class="card-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                    </div>
                     <h2 class="card-title">iPhone 历年参数对比</h2>
                 </div>
                 <div class="card-desc">
@@ -472,9 +825,11 @@
             </a>
 
             <!-- 2D 游戏引擎实践 -->
-            <a href="https://game.zqluo.com/" class="project-card" style="animation-delay: 0.2s" aria-label="查看 2D 游戏引擎实践 详情">
+            <a href="https://game.zqluo.com/" class="glass-card project-card icon-game" style="animation-delay: 0.2s" aria-label="查看 2D 游戏引擎实践 详情">
                 <div class="card-header">
-                    <div class="card-icon">🎮</div>
+                    <div class="card-icon-container">
+                        <div class="card-icon"><i class="fa-solid fa-gamepad"></i></div>
+                    </div>
                     <h2 class="card-title">2D 游戏引擎实践</h2>
                 </div>
                 <div class="card-desc">
@@ -496,9 +851,11 @@
             </a>
 
             <!-- 简易天气预报 -->
-            <a href="https://weather.zqluo.com/" class="project-card" style="animation-delay: 0.3s" aria-label="查看 简易天气预报 详情">
+            <a href="https://weather.zqluo.com/" class="glass-card project-card icon-weather" style="animation-delay: 0.3s" aria-label="查看 简易天气预报 详情">
                 <div class="card-header">
-                    <div class="card-icon">🌤️</div>
+                    <div class="card-icon-container">
+                        <div class="card-icon"><i class="fa-solid fa-cloud-sun"></i></div>
+                    </div>
                     <h2 class="card-title">简易天气预报</h2>
                 </div>
                 <div class="card-desc">
@@ -520,9 +877,11 @@
             </a>
 
             <!-- 英语音标发音卡片 -->
-            <a href="phonetics.html" class="project-card" style="animation-delay: 0.4s" aria-label="查看 英语音标发音卡片 详情">
+            <a href="phonetics.html" class="glass-card project-card icon-lang" style="animation-delay: 0.4s" aria-label="查看 英语音标发音卡片 详情">
                 <div class="card-header">
-                    <div class="card-icon">🔤</div>
+                    <div class="card-icon-container">
+                        <div class="card-icon"><i class="fa-solid fa-language"></i></div>
+                    </div>
                     <h2 class="card-title">英语音标发音卡片</h2>
                 </div>
                 <div class="card-desc">
@@ -545,15 +904,18 @@
         </section>
     </main>
 
-    <footer class="page-footer">
-        <a href="/" class="nav-back" aria-label="返回首页">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M19 12H5"></path>
-                <path d="M12 19l-7-7 7-7"></path>
-            </svg>
-            返回首页
-        </a>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="nav-back-container">
+            <a href="/" class="nav-back" aria-label="返回首页">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M19 12H5"></path>
+                    <path d="M12 19l-7-7 7-7"></path>
+                </svg>
+                返回首页
+            </a>
+        </div>
         <div class="footer-beian">
             <a href="https://beian.mps.gov.cn/#/query/webSearch?code=31011202022211" rel="noreferrer" target="_blank">
                 <img src="/assets/images/filing.png" alt="公网安备" />
@@ -561,12 +923,114 @@
             </a>
             <a href="https://beian.miit.gov.cn/" target="_blank">沪ICP备2025128934号-2</a>
         </div>
-        <p class="footer-copy">© <span id="year"></span> -ZQLUO-. Keep Coding, Keep Fun.</p>
+        <p class="footer-copy">© <span id="year"></span> zqluo.com 版权所有. Keep Coding, Keep Fun.</p>
     </footer>
 
+    <!-- Floating Rocket Back-To-Top Button -->
+    <button id="back-to-top" class="back-to-top-btn" aria-label="Back to Top">
+        <i class="fa-solid fa-rocket"></i>
+    </button>
+
     <script>
-        // 自动更新年份
+        // Auto-update copyright year
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Starry constellation background particles
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const maxParticles = 75; // slightly reduced for subpage performance
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.6;
+                this.vy = (Math.random() - 0.5) * 0.6;
+                this.radius = Math.random() * 2 + 1.5;
+                const colors = ['rgba(255, 204, 51, 0.6)', 'rgba(102, 204, 240, 0.6)', 'rgba(255, 0, 51, 0.6)', 'rgba(153, 204, 51, 0.6)'];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+                if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < maxParticles; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                p.update();
+                p.draw();
+                for (let j = i + 1; j < particles.length; j++) {
+                    const p2 = particles[j];
+                    const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                    if (dist < 120) {
+                        const alpha = (1 - dist / 120) * 0.15;
+                        ctx.strokeStyle = `rgba(45, 52, 70, ${alpha})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+
+        // Rocket back to top animation logic
+        const backToTopBtn = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                if (!backToTopBtn.classList.contains('launching')) {
+                    backToTopBtn.classList.add('show');
+                }
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            backToTopBtn.classList.add('launching');
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+                backToTopBtn.classList.remove('launching');
+                backToTopBtn.classList.remove('show');
+            }, 1000);
+        });
     </script>
 </body>
 
